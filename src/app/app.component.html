@@ -1,20 +1,49 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<mat-sidenav-container class="all-wrap" fullscreen>
+  <mat-sidenav #menu mode="over">
+    <mat-nav-list>
+      <a mat-list-item (click)="menu.close()" routerLink="/service">Service</a>
+      <a mat-list-item (click)="menu.close()" routerLink="/slides">Slides</a>
+      <a mat-list-item (click)="menu.close()" routerLink="/alerts">Alerts</a>
+      <a mat-list-item (click)="menu.close()" routerLink="/search">Search</a>
+    </mat-nav-list>
+  </mat-sidenav>
+<div class="page-wrap">
+<header>
+  <mat-toolbar style="background-color: #64aef3;">
+    <button mat-icon-button (click)="menu.toggle()"><mat-icon>menu</mat-icon></button>
+    <span>OpenLP Remote</span>
+  </mat-toolbar>
+</header>
+<main class="content">
+  <router-outlet></router-outlet>
+</main>
+<footer>
+    <mat-toolbar class="footer">
+      <button mat-icon-button (click)="previousItem()">
+        <mat-icon>first_page</mat-icon>
+      </button>
+      <button mat-icon-button (click)="nextItem()">
+        <mat-icon>last_page</mat-icon>
+      </button>
+      <button mat-icon-button (click)="previousSlide()">
+        <mat-icon>navigate_before</mat-icon>
+      </button>
+      <button mat-icon-button (click)="nextSlide()">
+        <mat-icon>navigate_next</mat-icon>
+      </button>
+      <button mat-icon-button (click)="blankDisplay()" class="displayButton" [class.active]="state.blank" [disabled]="state.blank">
+        <mat-icon>videocam_off</mat-icon>
+      </button>
+      <button mat-icon-button (click)="themeDisplay()" class="displayButton" [class.active]="state.theme" [disabled]="state.theme">
+        <mat-icon>wallpaper</mat-icon>
+      </button>
+      <button mat-icon-button (click)="desktopDisplay()" class="displayButton" [class.active]="state.display" [disabled]="state.display">
+        <mat-icon>desktop_windows</mat-icon>
+      </button>
+      <button mat-icon-button (click)="showDisplay()" class="displayButton" [class.active]="state.display" [disabled]="state.live()">
+        <mat-icon>videocam</mat-icon>
+      </button>
+    </mat-toolbar>
+  </footer>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+</mat-sidenav-container>
