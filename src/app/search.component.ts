@@ -14,7 +14,8 @@ template: `
 </mat-select>
 <br>
 <mat-form-field>
-  <input matInput [(ngModel)]="searchText" name="searchText" placeholder="Search Text"></mat-form-field>
+  <input matInput [(ngModel)]="searchText" name="searchText" placeholder="Search Text">
+</mat-form-field>
   <br>
 <button mat-raised-button color="warn" (click)="onSubmit()">Search</button>
 </form>

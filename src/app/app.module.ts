@@ -11,6 +11,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material';
+
 
 import { AppComponent } from './app.component';
 import { OpenLPService } from './openlp.service';
@@ -43,7 +45,8 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    MatInputModule
   ],
   providers: [
     OpenLPService
