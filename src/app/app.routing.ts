@@ -21,14 +21,14 @@ component: OpenLPServiceComponent
 path: 'slides',
 component: OpenLPSlidesComponent
 },
-// {
-// path: 'alerts',
-// component: OpenLPAlertComponent
-// },
-// {
-// path: 'search',
-// component: OpenLPSearchComponent
-// }
+{
+path: 'alerts',
+component: OpenLPAlertComponent
+},
+{
+path: 'search',
+component: OpenLPSearchComponent
+}
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
