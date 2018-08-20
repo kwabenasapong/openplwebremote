@@ -20,18 +20,6 @@ let deserialize = (json, cls) => {
     return inst;
   }
 
-let buildTextParams = id => {
-    let params: URLSearchParams = new URLSearchParams();
-    params.set('data', '{"request": {"text": "' + id + '"}}');
-    return {search: params}
-}
-
-let buildNumberParams = id => {
-    let params: URLSearchParams = new URLSearchParams();
-    params.set('data', '{"request": {"id": ' + id + '}}');
-    return {search: params}
-}
-
 @Injectable()
 export class OpenLPService {
   private apiURL: string = 'http://localhost:4316';
@@ -53,42 +41,12 @@ export class OpenLPService {
   }
 
   getItemSlides(): Observable<Slide[]> {
-    return this.http.get<SlideOuterResponse>('http://localhost:4316/controller/live/text')
-    .pipe(
-      take(1),
-      map(result => result.results.slides));
+    return this.http.get<Slide[]>('http://localhost:4316/controller/live/text');
   }
-
-  // getItemSlides() {
-  //   return this.http.get('http://localhost:4316/api/controller/live/text')
-  //     .toPromise()
-  //     .then(response => {
-  //       let slides:Slide[] = [];
-  //       response.json().results.slides.forEach(item => {
-  //         let slide = deserialize(item, Slide);
-  //         slide.lines = slide.text.split('\n');
-  //         slides.push(slide);
-  //       });
-  //       return slides;
-  //     })
-  //     .catch(this.handleError);
-  // }
 
   getServiceItems(): Observable<ServiceItem[]> {
     return this.http.get<ServiceItem[]>('http://localhost:4316/service/list');
   }
-
-
-  // getServiceItems() {
-  //   return this.http.get('http://localhost:4316/api/service/list')
-  //     .toPromise()
-  //     .then(response => {
-  //       let serviceItems:ServiceItem[] = [];
-  //       response.json().results.items.forEach(item => serviceItems.push(deserialize(item, ServiceItem)));
-  //       return serviceItems;
-  //     })
-  //     .catch(this.handleError);
-  // }
 
   sendItemLive(plugin, id) {}
   showAlert(text) {}
@@ -98,14 +56,11 @@ export class OpenLPService {
     return this.http.get<PluginDescription[]>(`${this.apiURL}/plugin/search`);
   }
 
-  // getSearchablePlugins() {
-  //   return this.http.get('http://localhost:4316/plugin/search')
-  //     .toPromise()
-  //     .then(response => response.json().results.items)
-  //     .catch(this.handleError);
-  // }
-
   setServiceItem(id:number) {
+  }
+
+  search(plugin, text) {
+    return this.http.get(`${this.apiURL}/${plugin}/search?q=${text}`);
   }
 
 
@@ -187,9 +142,6 @@ export class OpenLPService {
       .catch(this.dropError);
   }
   */
-  search(plugin, text) {
-    return this.http.get(`${this.apiURL}/${plugin}/search?q=${text}`);
-  }
 
   /*
 

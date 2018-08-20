@@ -32,7 +32,7 @@ export class OpenLPSlidesComponent implements OnInit {
   }
 
   getSlides() {
-    // this.openlpService.getItemSlides().then(slides=> {this.slides = slides;console.log(slides);});
+    this.openlpService.getItemSlides().subscribe(slides => this.slides = slides);
   }
 
   constructor(private openlpService: OpenLPService) {
