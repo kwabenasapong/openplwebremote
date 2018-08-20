@@ -24,7 +24,7 @@ export class OpenLPAlertComponent {
 
   onSubmit() {
     console.log('submitted: ', this.alert);
-    this.openlpService.showAlert(this.alert);
+    this.openlpService.showAlert(this.alert).subscribe(res => console.log(res));
     this.alert = '';
   }
 }

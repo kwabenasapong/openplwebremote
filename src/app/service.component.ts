@@ -25,7 +25,7 @@ export class OpenLPServiceComponent implements OnInit {
   }
 
   onItemSelected(item) {
-    this.openlpService.setServiceItem(item);
+    this.openlpService.setServiceItem(item).subscribe(res => console.log(res));
     this.router.navigate(['slides']);
   }
 

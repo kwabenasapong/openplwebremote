@@ -54,11 +54,11 @@ export class OpenLPSearchComponent implements OnInit {
   }
 
   sendLive(id) {
-    this.openlpService.sendItemLive(this.currentPlugin, id);
+    this.openlpService.sendItemLive(this.currentPlugin, id).subscribe(res => console.log(res));
   }
 
   addToService(id) {
-    this.openlpService.addItemToService(this.currentPlugin, id);
+    this.openlpService.addItemToService(this.currentPlugin, id).subscribe(res => console.log(res));
   }
 
   ngOnInit() {

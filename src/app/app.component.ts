@@ -18,38 +18,37 @@ export class AppComponent {
       console.log(result);
     });
   }
-  /*
+  
   nextItem() {
-  	this.openlpService.nextItem();
+  	this.openlpService.nextItem().subscribe(res => console.log(res));
   }
 
   previousItem() {
-  	this.openlpService.previousItem();
+  	this.openlpService.previousItem().subscribe(res => console.log(res));
   }
 
   nextSlide() {
-  	this.openlpService.nextSlide();
+  	this.openlpService.nextSlide().subscribe(res => console.log(res));
   }
 
   previousSlide() {
-  	this.openlpService.previousSlide();
+  	this.openlpService.previousSlide().subscribe(res => console.log(res));
   }
 
   blankDisplay() {
-  	this.openlpService.blankDisplay();
+  	this.openlpService.blankDisplay().subscribe(res => console.log(res));
   }
 
   themeDisplay() {
-  	this.openlpService.themeDisplay();
+  	this.openlpService.themeDisplay().subscribe(res => console.log(res));
   }
 
   desktopDisplay() {
-  	this.openlpService.desktopDisplay();
+  	this.openlpService.desktopDisplay().subscribe(res => console.log(res));
   }
 
   showDisplay() {
-  	this.openlpService.showDisplay();
+  	this.openlpService.showDisplay().subscribe(res => console.log(res));
   }
-  */
 
 }
