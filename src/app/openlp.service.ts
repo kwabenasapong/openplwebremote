@@ -188,7 +188,7 @@ export class OpenLPService {
   }
   */
   search(plugin, text) {
-    return this.http.get(`${this.apiURL}/${plugin}/search`);
+    return this.http.get(`${this.apiURL}/${plugin}/search?q=${text}`);
   }
 
   /*
