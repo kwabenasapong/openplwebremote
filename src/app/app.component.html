@@ -19,28 +19,28 @@
 </main>
 <footer>
     <mat-toolbar class="footer">
-      <button mat-icon-button (click)="previousItem()">
+      <button mat-icon-button (click)="previousItem()" matTooltip="Previous item">
         <mat-icon>first_page</mat-icon>
       </button>
-      <button mat-icon-button (click)="nextItem()">
+      <button mat-icon-button (click)="nextItem()" matTooltip="Next item">
         <mat-icon>last_page</mat-icon>
       </button>
-      <button mat-icon-button (click)="previousSlide()">
+      <button mat-icon-button (click)="previousSlide()" matTooltip="Previous slide">
         <mat-icon>navigate_before</mat-icon>
       </button>
-      <button mat-icon-button (click)="nextSlide()">
+      <button mat-icon-button (click)="nextSlide()" matTooltip="Next slide">
         <mat-icon>navigate_next</mat-icon>
       </button>
-      <button mat-icon-button (click)="blankDisplay()" class="displayButton" [class.active]="state.blank" [disabled]="state.blank">
+      <button mat-icon-button (click)="blankDisplay()" class="displayButton" [class.active]="state.blank" [disabled]="state.blank" matTooltip="Show black">
         <mat-icon>videocam_off</mat-icon>
       </button>
-      <button mat-icon-button (click)="themeDisplay()" class="displayButton" [class.active]="state.theme" [disabled]="state.theme">
+      <button mat-icon-button (click)="themeDisplay()" class="displayButton" [class.active]="state.theme" [disabled]="state.theme" matTooltip="Show background">
         <mat-icon>wallpaper</mat-icon>
       </button>
-      <button mat-icon-button (click)="desktopDisplay()" class="displayButton" [class.active]="state.display" [disabled]="state.display">
+      <button mat-icon-button (click)="desktopDisplay()" class="displayButton" [class.active]="state.display" [disabled]="state.display" matTooltip="Show Desktop">
         <mat-icon>desktop_windows</mat-icon>
       </button>
-      <button mat-icon-button (click)="showDisplay()" class="displayButton" [class.active]="state.display" [disabled]="state.live()">
+      <button mat-icon-button (click)="showDisplay()" class="displayButton" [class.active]="state.display" [disabled]="state.live()" matTooltip="Show Presentation">
         <mat-icon>videocam</mat-icon>
       </button>
     </mat-toolbar>

@@ -41,11 +41,11 @@ export class OpenLPService {
   }
 
   getItemSlides(): Observable<Slide[]> {
-    return this.http.get<Slide[]>('http://localhost:4316/controller/live/text');
+    return this.http.get<Slide[]>(`${this.apiURL}/controller/live/text`);
   }
 
   getServiceItems(): Observable<ServiceItem[]> {
-    return this.http.get<ServiceItem[]>('http://localhost:4316/service/list');
+    return this.http.get<ServiceItem[]>(`${this.apiURL}/service/list`);
   }
 
   sendItemLive(plugin, id) {}
