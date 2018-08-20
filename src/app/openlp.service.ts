@@ -192,12 +192,6 @@ export class OpenLPService {
   }
 
   /*
-  search(plugin, text) {
-    return this.http.get('http://localhost:4316/' + plugin + '/search', buildTextParams(text))
-      .toPromise()
-      .then(response => response.json().results.items)
-      .catch(this.handleError);
-  }
 
   sendItemLive(plugin, id) {
     this.http.get('http://localhost:4316/' + plugin + '/live', buildNumberParams(id))
@@ -211,15 +205,6 @@ export class OpenLPService {
       .toPromise()
       .then(response => console.log(response))
       .catch(this.dropError);
-  }
-
-  private dropError(error: any) {
-    console.error('An error occurred', error);
-  }
-
-  private handleError(error: any) {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
   }
   */
 }

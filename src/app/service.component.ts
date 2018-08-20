@@ -30,7 +30,7 @@ export class OpenLPServiceComponent implements OnInit {
   }
 
   getServiceItems() {
-    // this.openlpService.getServiceItems().then(items => this.items = items);
+    this.openlpService.getServiceItems().subscribe(items => this.items = items);
   }
 
   constructor(private openlpService: OpenLPService, private router: Router) {
