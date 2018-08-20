@@ -48,115 +48,64 @@ export class OpenLPService {
     return this.http.get<ServiceItem[]>(`${this.apiURL}/service/list`);
   }
 
-  sendItemLive(plugin, id) {}
-  showAlert(text) {}
-  addItemToService(plugin, id) {}
-
   getSearchablePlugins(): Observable<PluginDescription[]> {
     return this.http.get<PluginDescription[]>(`${this.apiURL}/plugin/search`);
   }
 
-  setServiceItem(id:number) {
+  setServiceItem(id:number): Observable<any> {
+    return this.http.get(`${this.apiURL}/service/set?id=${id}`);
   }
 
-  search(plugin, text) {
+  search(plugin, text): Observable<any> {
     return this.http.get(`${this.apiURL}/${plugin}/search?q=${text}`);
   }
 
 
-  // setServiceItem(id:number) {
-  //   this.http.get('http://localhost:4316/service/set', buildNumberParams(id))
-  //     .toPromise()
-  //     .then(response => console.log(response.json().results))
-  //     .catch(this.dropError);
-  // }
-  
-  /*
-  setSlide(id) {
-    this.http.get('http://localhost:4316/controller/live/set', buildNumberParams(id))
-      .toPromise()
-      .then(response => console.log(response.json().results))
-      .catch(this.dropError);
+  setSlide(id): Observable<any> {
+    return this.http.get(`${this.apiURL}/controller/live/set?id=${id}`);
   }
 
-  nextItem() {
-    this.http.get('http://localhost:4316/service/next')
-      .toPromise()
-      .then(response => console.log(response.json().results))
-      .catch(this.dropError);
+  nextItem(): Observable<any> {
+    return this.http.get(`${this.apiURL}/service/next`);
   }
 
-  previousItem() {
-    this.http.get('http://localhost:4316/service/previous')
-      .toPromise()
-      .then(response => console.log(response.json().results))
-      .catch(this.dropError);
+  previousItem(): Observable<any> {
+    return this.http.get(`${this.apiURL}/service/previous`);
   }
 
-  nextSlide() {
-    this.http.get('http://localhost:4316/controller/live/next')
-      .toPromise()
-      .then(response => console.log(response.json().results))
-      .catch(this.dropError);
+  nextSlide(): Observable<any> {
+    return this.http.get(`${this.apiURL}/controller/live/next`);
   }
 
-  previousSlide() {
-    this.http.get('http://localhost:4316/controller/live/previous')
-      .toPromise()
-      .then(response => console.log(response.json().results))
-      .catch(this.dropError);
+  previousSlide(): Observable<any> {
+    return this.http.get(`${this.apiURL}/controller/live/previous`);
   }
 
-  blankDisplay() {
-    this.http.get('http://localhost:4316/display/blank')
-      .toPromise()
-      .then(response => console.log(response.json().results))
-      .catch(this.dropError);
+  blankDisplay(): Observable<any> {
+    return this.http.get(`${this.apiURL}/display/blank`);
   }
 
-  themeDisplay() {
-    this.http.get('http://localhost:4316/display/theme')
-      .toPromise()
-      .then(response => console.log(response.json().results))
-      .catch(this.dropError);
+  themeDisplay(): Observable<any> {
+    return this.http.get(`${this.apiURL}/display/theme`);
   }
 
-  desktopDisplay() {
-    this.http.get('http://localhost:4316/display/desktop')
-      .toPromise()
-      .then(response => console.log(response.json().results))
-      .catch(this.dropError);
+  desktopDisplay(): Observable<any> {
+    return this.http.get(`${this.apiURL}/display/desktop`);
   }
 
-  showDisplay() {
-    this.http.get('http://localhost:4316/display/show')
-      .toPromise()
-      .then(response => console.log(response.json().results))
-      .catch(this.dropError);
+  showDisplay(): Observable<any> {
+    return this.http.get(`${this.apiURL}/display/show`);
   }
 
-  showAlert(text) {
-    this.http.get('http://localhost:4316/alert', buildTextParams(text))
-      .toPromise()
-      .then(response => console.log(response.json().results))
-      .catch(this.dropError);
-  }
-  */
-
-  /*
-
-  sendItemLive(plugin, id) {
-    this.http.get('http://localhost:4316/' + plugin + '/live', buildNumberParams(id))
-      .toPromise()
-      .then(response => console.log(response))
-      .catch(this.dropError);
+  showAlert(text): Observable<any> {
+    return this.http.get(`${this.apiURL}/alert?text=${text}`);
   }
 
-  addItemToService(plugin, id) {
-    this.http.get('http://localhost:4316/' + plugin + '/add', buildNumberParams(id))
-      .toPromise()
-      .then(response => console.log(response))
-      .catch(this.dropError);
+  sendItemLive(plugin, id): Observable<any> {
+    return this.http.get(`${this.apiURL}/${plugin}/live?id=${id}`);
   }
-  */
+
+  addItemToService(plugin, id): Observable<any> {
+    return this.http.get(`${this.apiURL}/${plugin}/add?id=${id}`);
+  }
 }
