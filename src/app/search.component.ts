@@ -27,8 +27,8 @@ template: `
   <table>
     <tr *ngFor="let item of searchResults">
       <td>{{item[1]}}</td>
-      <td><button md-button color="primary" (click)="addToService(item[0])">Add</button></td>
-      <td><button md-button color="primary" (click)="sendLive(item[0])">Send Live</button></td>
+      <td><button mat-button color="primary" (click)="addToService(item[0])">Add</button></td>
+      <td><button mat-button color="accent" (click)="sendLive(item[0])">Send Live</button></td>
     </tr>
   </table>
 </div>
@@ -42,7 +42,7 @@ export class OpenLPSearchComponent implements OnInit {
   public searchPlugins: PluginDescription[] = [];
   public searchText = null;
   public searchResults = null;
-  public selectedPlugin: string;
+  public selectedPlugin: string = "songs";
   public currentPlugin: string;
 
   constructor(private openlpService: OpenLPService) {}
