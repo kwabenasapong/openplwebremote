@@ -8,3 +8,8 @@ interface SlideResponse {
 export interface SlideOuterResponse {
     results: SlideResponse;
 }
+
+export interface PluginDescription {
+    key: string;
+    name: string;
+}

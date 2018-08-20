@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OpenLPService } from './openlp.service';
+import { PluginDescription } from './responses';
 
 @Component({
 selector: 'openlp-remote-search',
@@ -7,11 +8,13 @@ template: `
 <h3>Search</h3>
 <form>
 <label>Search for:</label>
+<mat-form-field>
 <mat-select [(ngModel)]="selectedPlugin" name="selectedPlugin">
-  <mat-option *ngFor="let plugin of searchPlugins" name="searchPlugins" [value]="plugin.id">
+  <mat-option *ngFor="let plugin of searchPlugins" name="searchPlugins" [value]="plugin.key">
     {{plugin.name}}
   </mat-option>
 </mat-select>
+</mat-form-field>
 <br>
 <mat-form-field>
   <input matInput [(ngModel)]="searchText" name="searchText" placeholder="Search Text">
@@ -36,7 +39,7 @@ providers: [OpenLPService]
 
 export class OpenLPSearchComponent implements OnInit {
 
-  public searchPlugins: OpenLPPlugin[] = null;
+  public searchPlugins: PluginDescription[] = [];
   public searchText = null;
   public searchResults = null;
   public selectedPlugin: string;
@@ -46,7 +49,8 @@ export class OpenLPSearchComponent implements OnInit {
 
   onSubmit() {
     this.currentPlugin = this.selectedPlugin;
-  //  this.openlpService.search(this.currentPlugin, this.searchText).then(items => this.searchResults = items);
+    this.currentPlugin = "songs";
+    this.openlpService.search(this.currentPlugin, this.searchText).subscribe(items => this.searchResults = items);
   }
 
   sendLive(id) {
@@ -58,20 +62,6 @@ export class OpenLPSearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getSearchablePlugins();
+    this.openlpService.getSearchablePlugins().subscribe(items => this.searchPlugins = items);
   }
-
-  getSearchablePlugins() {
-    // this.openlpService.getSearchablePlugins().then(items => {
-    //   this.searchPlugins = [];
-    //   for (var i = items.length - 1; i >= 0; i--) {
-    //     this.searchPlugins.push({id: items[i][0], name: items[i][1]})
-    //   }
-    // });
-  }
-}
-
-interface OpenLPPlugin {
-  id: string;
-  name: string;
 }

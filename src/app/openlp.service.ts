@@ -7,7 +7,7 @@ import { Slide } from './slide';
 import { ServiceItem } from './service_item';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-import { SlideOuterResponse } from './responses';
+import { SlideOuterResponse, PluginDescription } from './responses';
 
 let deserialize = (json, cls) => {
     var inst = new cls();
@@ -92,11 +92,10 @@ export class OpenLPService {
 
   sendItemLive(plugin, id) {}
   showAlert(text) {}
-  search(plugin, text) {}
   addItemToService(plugin, id) {}
 
-  getSearchablePlugins() {
-    return this.http.get(`${this.apiURL}/plugin/search`);
+  getSearchablePlugins(): Observable<PluginDescription[]> {
+    return this.http.get<PluginDescription[]>(`${this.apiURL}/plugin/search`);
   }
 
   // getSearchablePlugins() {
@@ -187,7 +186,12 @@ export class OpenLPService {
       .then(response => console.log(response.json().results))
       .catch(this.dropError);
   }
+  */
+  search(plugin, text) {
+    return this.http.get(`${this.apiURL}/${plugin}/search`);
+  }
 
+  /*
   search(plugin, text) {
     return this.http.get('http://localhost:4316/' + plugin + '/search', buildTextParams(text))
       .toPromise()
