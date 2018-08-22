@@ -19,7 +19,7 @@ providers: [OpenLPService]
 })
 
 export class OpenLPServiceComponent implements OnInit {
-  items = null;
+  items = [];
   ngOnInit() {
     this.getServiceItems();
   }

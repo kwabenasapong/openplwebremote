@@ -7,7 +7,7 @@ import { Slide } from './slide';
 import { ServiceItem } from './service_item';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-import { SlideOuterResponse, PluginDescription } from './responses';
+import { PluginDescription } from './responses';
 
 let deserialize = (json, cls) => {
     var inst = new cls();

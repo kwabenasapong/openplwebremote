@@ -14,41 +14,38 @@ export class AppComponent {
 
   constructor(private openlpService: OpenLPService) {
     openlpService.stateChanged$.subscribe(item => this.state = item);
-    openlpService.getServiceItems().subscribe(result => {
-      console.log(result);
-    });
   }
   
   nextItem() {
-  	this.openlpService.nextItem().subscribe(res => console.log(res));
+  	this.openlpService.nextItem().subscribe();
   }
 
   previousItem() {
-  	this.openlpService.previousItem().subscribe(res => console.log(res));
+  	this.openlpService.previousItem().subscribe();
   }
 
   nextSlide() {
-  	this.openlpService.nextSlide().subscribe(res => console.log(res));
+  	this.openlpService.nextSlide().subscribe();
   }
 
   previousSlide() {
-  	this.openlpService.previousSlide().subscribe(res => console.log(res));
+  	this.openlpService.previousSlide().subscribe();
   }
 
   blankDisplay() {
-  	this.openlpService.blankDisplay().subscribe(res => console.log(res));
+  	this.openlpService.blankDisplay().subscribe();
   }
 
   themeDisplay() {
-  	this.openlpService.themeDisplay().subscribe(res => console.log(res));
+  	this.openlpService.themeDisplay().subscribe();
   }
 
   desktopDisplay() {
-  	this.openlpService.desktopDisplay().subscribe(res => console.log(res));
+  	this.openlpService.desktopDisplay().subscribe();
   }
 
   showDisplay() {
-  	this.openlpService.showDisplay().subscribe(res => console.log(res));
+  	this.openlpService.showDisplay().subscribe();
   }
 
 }
