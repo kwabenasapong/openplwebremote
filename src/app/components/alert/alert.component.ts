@@ -1,18 +1,12 @@
 import { Component } from '@angular/core';
 
 
-import { OpenLPService } from './openlp.service';
+import { OpenLPService } from '../../openlp.service';
 
 @Component({
 selector: 'openlp-remote-alert',
-template: `
-<h3>Send an Alert</h3>
-<mat-form-field>
-  <input matInput [(ngModel)]="alert" type="text" placeholder="Alert"></mat-form-field>
-<div>
-<button mat-raised-button color="warn" (click)="onSubmit()">Send</button>
-</div>
-`,
+templateUrl: './alert.component.html',
+styleUrls: ['./alert.component.scss'],
 providers: [OpenLPService]
 })
 

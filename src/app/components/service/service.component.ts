@@ -1,20 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 
-import { OpenLPService } from './openlp.service';
+import { OpenLPService } from '../../openlp.service';
 
 @Component({
 selector: 'openlp-remote-service',
-template: `
-<h3>Service items:</h3>
-<div>
-  <mat-nav-list>
-    <a mat-list-item *ngFor="let item of items;let counter = index;" (click)="onItemSelected(counter)"  [class.selected]="item.selected">
-      <p mat-line>{{item.title}}<p>
-    </a>
-  </mat-nav-list>
-</div>
-`,
+templateUrl: './service.component.html',
+styleUrls: ['./service.component.scss'],
 providers: [OpenLPService]
 })
 

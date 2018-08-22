@@ -2,12 +2,10 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { URLSearchParams, Http } from '@angular/http';
 
-import { State } from './state';
-import { Slide } from './slide';
-import { ServiceItem } from './service_item';
+
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-import { PluginDescription } from './responses';
+import { PluginDescription, State, Slide, ServiceItem } from './responses';
 
 let deserialize = (json, cls) => {
     var inst = new cls();

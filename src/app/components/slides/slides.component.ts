@@ -1,23 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 
-import { OpenLPService } from './openlp.service';
+import { OpenLPService } from '../../openlp.service';
 
 @Component({
 selector: 'openlp-remote-slides',
-template: `
-<h3>Slides:</h3>
-<div>
-  <mat-list>
-    <mat-list-item *ngFor="let slide of slides; let counter = index;" style="white-space:pre-wrap;cursor: pointer;" (click)="onSlideSelected(counter)" [class.selected]="slide.selected">
-      <span mat-list-avatar>{{ slide.tag }}</span>
-      <p mat-line *ngFor="let line of slide.lines">
-        {{line}}
-      </p>
-    </mat-list-item>
-  </mat-list>
-</div>
-`,
+templateUrl: './slides.component.html',
+styleUrls: ['./slides.component.scss'],
 providers: [OpenLPService]
 })
 

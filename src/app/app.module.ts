@@ -19,10 +19,10 @@ import { AppComponent } from './app.component';
 import { OpenLPService } from './openlp.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app.routing';
-import { OpenLPServiceComponent } from './service.component';
-import { OpenLPAlertComponent } from './alert.component';
-import { OpenLPSearchComponent } from './search.component';
-import { OpenLPSlidesComponent } from './slides.component';
+import { OpenLPServiceComponent } from './components/service/service.component';
+import { OpenLPAlertComponent } from './components/alert/alert.component';
+import { OpenLPSearchComponent } from './components/search/search.component';
+import { OpenLPSlidesComponent } from './components/slides/slides.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({

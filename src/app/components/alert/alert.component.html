@@ -1,0 +1,6 @@
+<h3>Send an Alert</h3>
+<mat-form-field>
+  <input matInput [(ngModel)]="alert" type="text" placeholder="Alert"></mat-form-field>
+<div>
+<button mat-raised-button color="warn" (click)="onSubmit()">Send</button>
+</div>
