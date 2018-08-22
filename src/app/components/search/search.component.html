@@ -1,5 +1,5 @@
 <h3>Search</h3>
-<form>
+<form #searchForm="ngForm">
 <mat-form-field>
     <mat-select [(ngModel)]="selectedPlugin" name="selectedPlugin" placeholder="Search for:">
   <mat-option *ngFor="let plugin of searchPlugins" name="searchPlugins" [value]="plugin.key">
@@ -9,10 +9,10 @@
 </mat-form-field>
 <br>
 <mat-form-field>
-  <input matInput [(ngModel)]="searchText" name="searchText" placeholder="Search Text">
+  <input matInput [(ngModel)]="searchText" name="searchText" placeholder="Search Text" required>
 </mat-form-field>
   <br>
-<button mat-raised-button id="searchButton" color="primary" (click)="onSubmit()">Search</button>
+<button mat-raised-button id="searchButton" color="primary" [disabled]="!searchForm.form.valid" (click)="onSubmit()">Search</button>
 </form>
 <div *ngIf="searchResults">
   <h3>Search Results:</h3>
