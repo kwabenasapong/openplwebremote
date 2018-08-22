@@ -29,7 +29,7 @@ export class OpenLPService {
   constructor(private http: HttpClient) {
     this.stateChanged$ = new EventEmitter<State>();
     let state:State = null;
-    let ws:WebSocket = new WebSocket('ws://localhost:4317/poll')
+    let ws:WebSocket = new WebSocket('ws://localhost:4317/state')
     ws.onmessage = (event) => {
       let reader = new FileReader()
       reader.onload = () => {
