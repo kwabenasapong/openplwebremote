@@ -1,8 +1,7 @@
 <h3>Search</h3>
 <form>
-<label>Search for:</label>
 <mat-form-field>
-<mat-select [(ngModel)]="selectedPlugin" name="selectedPlugin">
+    <mat-select [(ngModel)]="selectedPlugin" name="selectedPlugin" placeholder="Search for:">
   <mat-option *ngFor="let plugin of searchPlugins" name="searchPlugins" [value]="plugin.key">
     {{plugin.name}}
   </mat-option>
@@ -13,11 +12,14 @@
   <input matInput [(ngModel)]="searchText" name="searchText" placeholder="Search Text">
 </mat-form-field>
   <br>
-<button mat-raised-button color="warn" (click)="onSubmit()">Search</button>
+<button mat-raised-button id="searchButton" color="primary" (click)="onSubmit()">Search</button>
 </form>
 <div *ngIf="searchResults">
   <h3>Search Results:</h3>
-  <table>
+  <div *ngIf="!searchResults.length">
+    No Results matching your search were found...
+  </div>
+  <table *ngIf="searchResults.length">
     <tr *ngFor="let item of searchResults">
       <td>{{item[1]}}</td>
       <td><button mat-button color="primary" (click)="addToService(item[0])">Add</button></td>
