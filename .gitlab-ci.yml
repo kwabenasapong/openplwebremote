@@ -1,0 +1,7 @@
+image: node:alpine
+
+build:
+  stage: test
+  script:
+    - yarn install
+    - ./node_modules/@angular/cli/bin/ng build --prod --no-progress
