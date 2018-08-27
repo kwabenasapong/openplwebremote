@@ -2,7 +2,7 @@
 <div>
   <mat-nav-list>
     <a mat-list-item *ngFor="let item of items;let counter = index;" (click)="onItemSelected(counter)"  [class.selected]="item.selected">
-      <mat-icon mat-list-icon>queue_music</mat-icon>
+      <mat-icon mat-list-icon>{{ getIcon(item) }}</mat-icon>
       <p mat-line>{{item.title}}<p>
     </a>
   </mat-nav-list>

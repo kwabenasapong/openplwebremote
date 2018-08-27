@@ -30,5 +30,4 @@ export interface ServiceItem {
     plugin: string;
     selected: boolean;
     title: string;
-  }
-  
+}
