@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { State } from './responses';
 import { OpenLPService } from './openlp.service';
+import { MatSlideToggleChange } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,7 @@ import { OpenLPService } from './openlp.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
-
+  fastSwitching: boolean = false;
   state: State = new State();
 
   constructor(private openlpService: OpenLPService) {
@@ -46,6 +46,10 @@ export class AppComponent {
 
   showDisplay() {
   	this.openlpService.showDisplay().subscribe();
+  }
+
+  sliderChanged(event: MatSlideToggleChange) {
+    this.fastSwitching = event.checked;
   }
 
 }

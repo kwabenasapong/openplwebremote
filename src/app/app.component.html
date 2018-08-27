@@ -5,6 +5,8 @@
       <a mat-list-item (click)="menu.close()" routerLink="/slides">Slides</a>
       <a mat-list-item (click)="menu.close()" routerLink="/alerts">Alerts</a>
       <a mat-list-item (click)="menu.close()" routerLink="/search">Search</a>
+      <mat-divider></mat-divider>
+      <mat-slide-toggle color="primary" [checked]="fastSwitching" (change)="sliderChanged($event)">Fast switching</mat-slide-toggle>
     </mat-nav-list>
   </mat-sidenav>
 <div class="page-wrap">
@@ -44,6 +46,12 @@
         <mat-icon>videocam</mat-icon>
       </button>
     </mat-toolbar>
+    <mat-toolbar *ngIf="fastSwitching" class="fast-access">
+        <button mat-icon-button routerLink="/service"><mat-icon>list</mat-icon></button>
+        <button mat-icon-button routerLink="/slides"><mat-icon>collections</mat-icon></button>
+        <button mat-icon-button routerLink="/alerts"><mat-icon>error</mat-icon></button>
+        <button mat-icon-button routerLink="/search"><mat-icon>search</mat-icon></button>
+      </mat-toolbar>
   </footer>
 </div>
 </mat-sidenav-container>
