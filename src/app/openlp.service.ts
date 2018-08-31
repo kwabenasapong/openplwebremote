@@ -2,10 +2,10 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { URLSearchParams, Http } from '@angular/http';
 
-
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { PluginDescription, State, Slide, ServiceItem } from './responses';
+import { environment } from '../environments/environment';
 
 let deserialize = (json, cls) => {
     var inst = new cls();
@@ -20,11 +20,19 @@ let deserialize = (json, cls) => {
 
 @Injectable()
 export class OpenLPService {
-  private apiURL: string = 'http://localhost:4316';
+  private apiURL: string;
 
   public stateChanged$: EventEmitter<State>;
 
   constructor(private http: HttpClient) {
+    let port: string;
+    if (environment.production) {
+      port = window.location.port;
+    } else {
+      port = '4316';
+    }
+    this.apiURL = `http://localhost:${port}`;
+
     this.stateChanged$ = new EventEmitter<State>();
     let state:State = null;
     let ws:WebSocket = new WebSocket('ws://localhost:4317/state')
