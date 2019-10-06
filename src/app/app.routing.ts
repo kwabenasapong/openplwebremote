@@ -1,38 +1,39 @@
-import { ModuleWithProviders, NgModule }  from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { OpenLPServiceComponent } from './components/service/service.component';
-import { OpenLPAlertComponent } from './components/alert/alert.component';
-import { OpenLPSearchComponent } from './components/search/search.component';
-import { OpenLPSlidesComponent } from './components/slides/slides.component';
+import { ServiceComponent } from './components/service/service.component';
+import { AlertComponent } from './components/alert/alert.component';
+import { SearchComponent } from './components/search/search.component';
+import { SlidesComponent } from './components/slides/slides.component';
 
 const routes: Routes = [
-{
-path: '',
-redirectTo: '/service',
-pathMatch: 'full'
-},
-{
-path: 'service',
-component: OpenLPServiceComponent
-},
-{
-path: 'slides',
-component: OpenLPSlidesComponent
-},
-{
-path: 'alerts',
-component: OpenLPAlertComponent
-},
-{
-path: 'search',
-component: OpenLPSearchComponent
-}
+  {
+    path: '',
+    redirectTo: '/service',
+    pathMatch: 'full'
+  },
+  {
+    path: 'service',
+    component: ServiceComponent
+  },
+  {
+    path: 'slides',
+    component: SlidesComponent
+  },
+  {
+    path: 'alerts',
+    component: AlertComponent
+  },
+  {
+    path: 'search',
+    component: SearchComponent
+  }
 ];
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

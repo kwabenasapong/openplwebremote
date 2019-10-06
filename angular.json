@@ -3,11 +3,11 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "openlp-remote": {
+    "@openlp/web-remote": {
       "root": "",
+      "prefix": "app",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "app",
       "schematics": {
           "@schematics/angular:component": {
               "styleext": "scss"
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/openlp-remote",
+            "outputPath": "dist/web-remote",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -54,18 +54,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "openlp-remote:build"
+            "browserTarget": "@openlp/web-remote:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "openlp-remote:build:production"
+              "browserTarget": "@openlp/web-remote:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "openlp-remote:build"
+            "browserTarget": "@openlp/web-remote:build"
           }
         },
         "test": {
@@ -99,7 +99,7 @@
         }
       }
     },
-    "openlp-remote-e2e": {
+    "@openlp/web-remote-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -107,7 +107,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "openlp-remote:serve"
+            "devServerTarget": "@openlp/web-remote:serve"
           }
         },
         "lint": {
@@ -122,5 +122,5 @@
       }
     }
   },
-  "defaultProject": "openlp-remote"
+  "defaultProject": "@openlp/web-remote"
 }

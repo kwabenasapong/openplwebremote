@@ -9,43 +9,43 @@ import { MatSlideToggleChange } from '@angular/material';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  fastSwitching: boolean = false;
+  fastSwitching = false;
   state: State = new State();
 
   constructor(private openlpService: OpenLPService) {
     openlpService.stateChanged$.subscribe(item => this.state = item);
   }
-  
+
   nextItem() {
-  	this.openlpService.nextItem().subscribe();
+    this.openlpService.nextItem().subscribe();
   }
 
   previousItem() {
-  	this.openlpService.previousItem().subscribe();
+    this.openlpService.previousItem().subscribe();
   }
 
   nextSlide() {
-  	this.openlpService.nextSlide().subscribe();
+    this.openlpService.nextSlide().subscribe();
   }
 
   previousSlide() {
-  	this.openlpService.previousSlide().subscribe();
+    this.openlpService.previousSlide().subscribe();
   }
 
   blankDisplay() {
-  	this.openlpService.blankDisplay().subscribe();
+    this.openlpService.blankDisplay().subscribe();
   }
 
   themeDisplay() {
-  	this.openlpService.themeDisplay().subscribe();
+    this.openlpService.themeDisplay().subscribe();
   }
 
   desktopDisplay() {
-  	this.openlpService.desktopDisplay().subscribe();
+    this.openlpService.desktopDisplay().subscribe();
   }
 
   showDisplay() {
-  	this.openlpService.showDisplay().subscribe();
+    this.openlpService.showDisplay().subscribe();
   }
 
   sliderChanged(event: MatSlideToggleChange) {

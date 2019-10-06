@@ -4,13 +4,13 @@ import { Component, OnInit } from '@angular/core';
 import { OpenLPService } from '../../openlp.service';
 
 @Component({
-selector: 'openlp-remote-slides',
-templateUrl: './slides.component.html',
-styleUrls: ['./slides.component.scss'],
-providers: [OpenLPService]
+  selector: 'openlp-slides',
+  templateUrl: './slides.component.html',
+  styleUrls: ['./slides.component.scss'],
+  providers: [OpenLPService]
 })
 
-export class OpenLPSlidesComponent implements OnInit {
+export class SlidesComponent implements OnInit {
   slides = null;
   ngOnInit() {
     this.getSlides();

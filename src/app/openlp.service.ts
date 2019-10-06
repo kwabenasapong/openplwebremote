@@ -7,43 +7,42 @@ import { map, take } from 'rxjs/operators';
 import { PluginDescription, State, Slide, ServiceItem } from './responses';
 import { environment } from '../environments/environment';
 
-let deserialize = (json, cls) => {
-    var inst = new cls();
-    for(var p in json) {
-      if(!json.hasOwnProperty(p)) {
-        continue;
-      }
-      inst[p] = json[p];
+const deserialize = (json, cls) => {
+  const inst = new cls();
+  for (const p in json) {
+    if (!json.hasOwnProperty(p)) {
+      continue;
     }
-    return inst;
+    inst[p] = json[p];
   }
+  return inst;
+};
 
 @Injectable()
 export class OpenLPService {
   private apiURL: string;
-
   public stateChanged$: EventEmitter<State>;
 
   constructor(private http: HttpClient) {
     let port: string;
     if (environment.production) {
       port = window.location.port;
-    } else {
+    }
+    else {
       port = '4316';
     }
     this.apiURL = `http://localhost:${port}`;
-
     this.stateChanged$ = new EventEmitter<State>();
-    let state:State = null;
-    let ws:WebSocket = new WebSocket('ws://localhost:4317/state')
+    let state: State = null;
+    const ws: WebSocket = new WebSocket('ws://localhost:4317/state');
     ws.onmessage = (event) => {
-      let reader = new FileReader()
+      const reader = new FileReader();
       reader.onload = () => {
         state = deserialize(JSON.parse(reader.result).results, State);
         this.stateChanged$.emit(state);
-        }
+      };
       reader.readAsText(event.data);
-    }
+    };
   }
 
   getItemSlides(): Observable<Slide[]> {
@@ -58,14 +57,13 @@ export class OpenLPService {
     return this.http.get<PluginDescription[]>(`${this.apiURL}/plugin/search`);
   }
 
-  setServiceItem(id:number): Observable<any> {
+  setServiceItem(id: number): Observable<any> {
     return this.http.get(`${this.apiURL}/service/set?id=${id}`);
   }
 
   search(plugin, text): Observable<any> {
     return this.http.get(`${this.apiURL}/${plugin}/search?q=${text}`);
   }
-
 
   setSlide(id): Observable<any> {
     return this.http.get(`${this.apiURL}/controller/live/set?id=${id}`);

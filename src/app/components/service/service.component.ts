@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 
 import { OpenLPService } from '../../openlp.service';
 import { ServiceItem } from '../../responses';
 
 @Component({
-  selector: 'openlp-remote-service',
+  selector: 'openlp-service',
   templateUrl: './service.component.html',
   styleUrls: ['./service.component.scss'],
   providers: [OpenLPService]
 })
 
-export class OpenLPServiceComponent implements OnInit {
+export class ServiceComponent implements OnInit {
   items: ServiceItem[] = [];
   ngOnInit() {
     this.getServiceItems();
@@ -31,17 +31,17 @@ export class OpenLPServiceComponent implements OnInit {
   }
 
   getIcon(item: ServiceItem): string {
-    if (item.plugin == 'songs') {
+    if (item.plugin === 'songs') {
       return 'queue_music';
-    } else if (item.plugin == 'images') {
+    } else if (item.plugin === 'images') {
       return 'image';
-    } else if (item.plugin == 'bibles') {
+    } else if (item.plugin === 'bibles') {
       return 'book';
-    } else if (item.plugin == 'media') {
+    } else if (item.plugin === 'media') {
       return 'movie';
-    } else if (item.plugin == 'custom') {
+    } else if (item.plugin === 'custom') {
       return 'description';
-    } else if (item.plugin == 'presentations') {
+    } else if (item.plugin === 'presentations') {
       return 'slideshow';
     }
     return 'crop_square';
