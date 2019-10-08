@@ -1,0 +1,23 @@
+.song {
+    white-space: pre-wrap;
+    .with-chords {
+        line-height: 2;
+    }
+    
+    span[data-chord]:before {
+        position: relative;
+        top: -1em;
+        display: inline-block;
+        content: attr(data-chord);
+        width: 0;
+        color: yellow;
+    }
+}
+
+.nextSlides {
+    .song {
+        span[data-chord]:before {
+            color: gray;
+        }
+    }
+}

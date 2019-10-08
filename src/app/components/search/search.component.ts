@@ -27,11 +27,11 @@ export class SearchComponent implements OnInit {
   }
 
   sendLive(id) {
-    this.openlpService.sendItemLive(this.currentPlugin, id).subscribe(res => console.log(res));
+    this.openlpService.sendItemLive(this.currentPlugin, id).subscribe(res => {});
   }
 
   addToService(id) {
-    this.openlpService.addItemToService(this.currentPlugin, id).subscribe(res => console.log(res));
+    this.openlpService.addItemToService(this.currentPlugin, id).subscribe(res => {});
   }
 
   ngOnInit() {

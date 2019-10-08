@@ -17,7 +17,7 @@ export class SlidesComponent implements OnInit {
   }
 
   onSlideSelected(item) {
-    this.openlpService.setSlide(item).subscribe(res => console.log(res));
+    this.openlpService.setSlide(item).subscribe(res => {});
   }
 
   getSlides() {

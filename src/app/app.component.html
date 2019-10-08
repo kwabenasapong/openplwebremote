@@ -6,6 +6,10 @@
       <a mat-list-item (click)="menu.close()" routerLink="/alerts">Alerts</a>
       <a mat-list-item (click)="menu.close()" routerLink="/search">Search</a>
       <mat-divider></mat-divider>
+      <a mat-list-item (click)="menu.close()" routerLink="/main">Main View</a>
+      <a mat-list-item (click)="menu.close()" routerLink="/stage">Stage View</a>
+      <a mat-list-item (click)="menu.close()" routerLink="/chords">Chord View</a>
+      <mat-divider></mat-divider>
       <mat-slide-toggle color="primary" [checked]="fastSwitching" (change)="sliderChanged($event)">Fast switching</mat-slide-toggle>
     </mat-nav-list>
   </mat-sidenav>
@@ -14,6 +18,8 @@
   <mat-toolbar style="background-color: #64aef3;">
     <button mat-icon-button (click)="menu.toggle()"><mat-icon>menu</mat-icon></button>
     <span>OpenLP Remote</span>
+    <span class="filler"></span>
+    <button *ngIf="showLogin" mat-button (click)="login()">Login</button>
   </mat-toolbar>
 </header>
 <main class="content">

@@ -1,0 +1,12 @@
+.transpose {
+    margin-left: 25px;
+    display: flex;
+    flex-direction: column;
+    font-size: 3rem;
+    mat-icon {
+        font-size: 3rem;
+    }
+    span {
+        margin-left: 17px;
+    }
+}

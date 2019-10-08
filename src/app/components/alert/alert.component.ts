@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 
 import { OpenLPService } from '../../openlp.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'openlp-alert',
@@ -14,11 +15,9 @@ export class AlertComponent {
 
   public alert: string;
 
-  constructor(private openlpService: OpenLPService) { }
+  constructor(private openlpService: OpenLPService, private snackBar: MatSnackBar) { }
 
   onSubmit() {
-    console.log('submitted: ', this.alert);
-    this.openlpService.showAlert(this.alert).subscribe(res => console.log(res));
-    this.alert = '';
+    this.openlpService.showAlert(this.alert).subscribe(res => this.snackBar.open('Alert submitted', '', {duration: 2000}));
   }
 }

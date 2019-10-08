@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+
+* {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+mat-sidenav-layout {
+	background: rgba(0,0,0,0.03);
+}
+mat-sidenav {
+	width: 200px;
+}
+
+.displayButton .active {
+	background: 'teal';
+}
+
+.content {
+	margin: 20px;
+}
+
+.chordline {                                                                                                 
+    line-height: 1.8;
+  }
+  
+  .chordline1 {
+    line-height: 1.0 
+  }
+  
+  .chordline span.chord span {
+    position: relative;
+  }
+  
+  .chordline span.chord span strong {
+    position: absolute;
+    top: -2.1rem;
+    left: 0;
+    font-size: 30pt;
+    font-weight: normal;
+    line-height: normal;
+    color: yellow;
+  }
