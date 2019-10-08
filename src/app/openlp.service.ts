@@ -1,10 +1,9 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { URLSearchParams, Http } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
-import { PluginDescription, State, Slide, ServiceItem } from './responses';
+
+import { PluginDescription, State, Slide, ServiceItem, MainView, SystemInformation, Credentials, AuthToken } from './responses';
 import { environment } from '../environments/environment';
 
 const deserialize = (json, cls) => {
@@ -16,6 +15,10 @@ const deserialize = (json, cls) => {
     inst[p] = json[p];
   }
   return inst;
+};
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
 @Injectable()
@@ -31,30 +34,45 @@ export class OpenLPService {
     else {
       port = '4316';
     }
-    this.apiURL = `http://localhost:${port}`;
+    this.apiURL = `http://localhost:${port}/api/v1`;
+
+
     this.stateChanged$ = new EventEmitter<State>();
-    let state: State = null;
-    const ws: WebSocket = new WebSocket('ws://localhost:4317/state');
-    ws.onmessage = (event) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        state = deserialize(JSON.parse(reader.result).results, State);
-        this.stateChanged$.emit(state);
+    this.retrieveSystemInformation().subscribe(info => {
+      const ws = new WebSocket(`ws://localhost:${info.websocket_port}/state`);
+      ws.onmessage = (event) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const state = deserialize(JSON.parse(reader.result as string).results, State);
+          this.stateChanged$.emit(state);
+        };
+        reader.readAsText(event.data);
       };
-      reader.readAsText(event.data);
-    };
+    });
+  }
+
+  setAuthToken(token: string): void {
+    httpOptions.headers = httpOptions.headers.set('Authorization', token);
+  }
+
+  retrieveSystemInformation(): Observable<SystemInformation> {
+    return this.http.get<SystemInformation>(`${this.apiURL}/core/system`, httpOptions);
+  }
+
+  getMainImage(): Observable<MainView> {
+    return this.http.get<MainView>(`${this.apiURL}/core/live-image`, httpOptions);
   }
 
   getItemSlides(): Observable<Slide[]> {
-    return this.http.get<Slide[]>(`${this.apiURL}/controller/live/text`);
+    return this.http.get<Slide[]>(`${this.apiURL}/controller/live-item`, httpOptions);
   }
 
   getServiceItems(): Observable<ServiceItem[]> {
-    return this.http.get<ServiceItem[]>(`${this.apiURL}/service/list`);
+    return this.http.get<ServiceItem[]>(`${this.apiURL}/service/list`, httpOptions);
   }
 
   getSearchablePlugins(): Observable<PluginDescription[]> {
-    return this.http.get<PluginDescription[]>(`${this.apiURL}/plugin/search`);
+    return this.http.get<PluginDescription[]>(`${this.apiURL}/core/plugins`, httpOptions);
   }
 
   setServiceItem(id: number): Observable<any> {
@@ -62,54 +80,58 @@ export class OpenLPService {
   }
 
   search(plugin, text): Observable<any> {
-    return this.http.get(`${this.apiURL}/${plugin}/search?q=${text}`);
+    return this.http.get(`${this.apiURL}/plugins/${plugin}/search?text=${text}`, httpOptions);
   }
 
   setSlide(id): Observable<any> {
-    return this.http.get(`${this.apiURL}/controller/live/set?id=${id}`);
+    return this.http.post(`${this.apiURL}/controller/show`, {'id': id}, httpOptions);
   }
 
   nextItem(): Observable<any> {
-    return this.http.get(`${this.apiURL}/service/next`);
+    return this.http.post(`${this.apiURL}/service/progress`, {'action': 'next'}, httpOptions);
   }
 
   previousItem(): Observable<any> {
-    return this.http.get(`${this.apiURL}/service/previous`);
+    return this.http.post(`${this.apiURL}/service/progress`, {'action': 'previous'}, httpOptions);
   }
 
   nextSlide(): Observable<any> {
-    return this.http.get(`${this.apiURL}/controller/live/next`);
+    return this.http.post(`${this.apiURL}/controller/progress`, {'action': 'next'}, httpOptions);
   }
 
   previousSlide(): Observable<any> {
-    return this.http.get(`${this.apiURL}/controller/live/previous`);
+    return this.http.post(`${this.apiURL}/controller/progress`, {'action': 'previous'}, httpOptions);
   }
 
   blankDisplay(): Observable<any> {
-    return this.http.get(`${this.apiURL}/display/blank`);
+    return this.http.post(`${this.apiURL}/core/display`, {'display': 'blank'}, httpOptions);
   }
 
   themeDisplay(): Observable<any> {
-    return this.http.get(`${this.apiURL}/display/theme`);
+    return this.http.post(`${this.apiURL}/core/display`, {'display': 'theme'}, httpOptions);
   }
 
   desktopDisplay(): Observable<any> {
-    return this.http.get(`${this.apiURL}/display/desktop`);
+    return this.http.post(`${this.apiURL}/core/display`, {'display': 'desktop'}, httpOptions);
   }
 
   showDisplay(): Observable<any> {
-    return this.http.get(`${this.apiURL}/display/show`);
+    return this.http.post(`${this.apiURL}/core/display`, {'display': 'show'}, httpOptions);
   }
 
   showAlert(text): Observable<any> {
-    return this.http.get(`${this.apiURL}/alert?text=${text}`);
+    return this.http.post(`${this.apiURL}/plugins/alerts`, {'text': text}, httpOptions);
   }
 
   sendItemLive(plugin, id): Observable<any> {
-    return this.http.get(`${this.apiURL}/${plugin}/live?id=${id}`);
+    return this.http.post(`${this.apiURL}/plugins/${plugin}/live`, {'id': id}, httpOptions);
   }
 
   addItemToService(plugin, id): Observable<any> {
-    return this.http.get(`${this.apiURL}/${plugin}/add?id=${id}`);
+    return this.http.post(`${this.apiURL}/plugins/${plugin}/add`, {'id': id}, httpOptions);
+  }
+
+  login(credentials: Credentials): Observable<AuthToken> {
+    return this.http.post<AuthToken>(`${this.apiURL}/core/login`, credentials, httpOptions);
   }
 }

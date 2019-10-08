@@ -3,6 +3,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { NgModule } from '@angular/core';
 
+import { MatCardModule, MatDialogModule, MatSnackBarModule } from '@angular/material';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
@@ -25,10 +26,21 @@ import { AlertComponent } from './components/alert/alert.component';
 import { SearchComponent } from './components/search/search.component';
 import { SlidesComponent } from './components/slides/slides.component';
 import { FormsModule } from '@angular/forms';
+import { ChordViewComponent } from './components/chord-view/chord-view.component';
+import { StageViewComponent } from './components/stage-view/stage-view.component';
+import { MainViewComponent } from './components/main-view/main-view.component';
+import { ChordProPipe } from './components/chord-view/chordpro.pipe';
+import { LoginComponent } from './components/login/login.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    ChordViewComponent,
+    StageViewComponent,
+    MainViewComponent,
+    ChordProPipe,
+    LoginComponent,
     ServiceComponent,
     AlertComponent,
     SearchComponent,
@@ -50,10 +62,16 @@ import { FormsModule } from '@angular/forms';
     MatButtonModule,
     MatInputModule,
     MatTooltipModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatCardModule,
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [
     OpenLPService
+  ],
+  entryComponents: [
+    LoginComponent
   ],
   bootstrap: [AppComponent]
 })

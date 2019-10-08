@@ -1,19 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { State } from './responses';
 import { OpenLPService } from './openlp.service';
-import { MatSlideToggleChange } from '@angular/material';
+import { MatSlideToggleChange, MatDialog } from '@angular/material';
+import { LoginComponent } from './components/login/login.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   fastSwitching = false;
-  state: State = new State();
+  state = new State();
+  showLogin = false;
 
-  constructor(private openlpService: OpenLPService) {
+  constructor(private openlpService: OpenLPService, private dialog: MatDialog) {
     openlpService.stateChanged$.subscribe(item => this.state = item);
+  }
+
+  ngOnInit(): void {
+    this.openlpService.retrieveSystemInformation().subscribe(res => this.showLogin = res.login_required);
+  }
+
+  login() {
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '250px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.showLogin = false;
+        this.openlpService.setAuthToken(result.token);
+      }
+    });
   }
 
   nextItem() {

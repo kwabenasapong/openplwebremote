@@ -3,5 +3,5 @@
   <mat-form-field>
     <input matInput [(ngModel)]="alert" type="text" name="alert" placeholder="Alert" required>
   </mat-form-field>
-  <button mat-raised-button color="primary" id="sendButton" [disabled]="!alertForm.form.valid" (click)="onSubmit()">Send</button>
+  <button mat-raised-button color="primary" id="sendButton" [disabled]="!alertForm.form.valid" (click)="onSubmit(); alertForm.reset()">Send</button>
 </form>

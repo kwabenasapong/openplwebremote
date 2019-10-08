@@ -1,0 +1,21 @@
+<div class="overlay">
+  <div>
+    <div class="tags">
+      <span *ngFor="let tag of tags" [class.active]="tag.active">{{ tag.text }}</span>
+    </div>
+    <div class="container">
+      <div class="slide currentSlide mat-display-3">
+        {{ currentSlides[activeSlide]?.text }}
+      </div>
+      <div class="nextSlides">
+        <div class="slide mat-display-1" [class.first]="slide.first_slide_of_tag" *ngFor="let slide of nextSlides">
+          {{ slide.text }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar">
+    <div class="time">{{ time|date:'HH:mm' }}</div>
+    <button mat-raised-button class="closeButton" routerLink="/">Close</button>
+  </div>
+</div>

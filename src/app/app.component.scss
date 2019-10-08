@@ -11,6 +11,10 @@ mat-sidenav {
     min-height: 100vh;
 }
 
+.filler {
+    flex-grow: 1;
+}
+
 .content {
     flex: 1;
 }
