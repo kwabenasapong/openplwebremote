@@ -1,10 +1,19 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 import { Observable } from 'rxjs';
 
-import { PluginDescription, State, Slide, ServiceItem, MainView, SystemInformation, Credentials, AuthToken } from './responses';
+import {
+  PluginDescription,
+  State,
+  Slide,
+  ServiceItem,
+  MainView,
+  SystemInformation,
+  Credentials,
+  AuthToken
+} from './responses';
 import { environment } from '../environments/environment';
+
 
 const deserialize = (json, cls) => {
   const inst = new cls();
@@ -21,12 +30,14 @@ const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
+
 @Injectable()
 export class OpenLPService {
   private apiURL: string;
   public stateChanged$: EventEmitter<State>;
 
   constructor(private http: HttpClient) {
+    const host = window.location.hostname;
     let port: string;
     if (environment.production) {
       port = window.location.port;
@@ -34,12 +45,11 @@ export class OpenLPService {
     else {
       port = '4316';
     }
-    this.apiURL = `http://localhost:${port}/api/v1`;
-
+    this.apiURL = `http://${host}:${port}/api/v1`;
 
     this.stateChanged$ = new EventEmitter<State>();
     this.retrieveSystemInformation().subscribe(info => {
-      const ws = new WebSocket(`ws://localhost:${info.websocket_port}/state`);
+    const ws = new WebSocket(`ws://${host}:${info.websocket_port}/state`);
       ws.onmessage = (event) => {
         const reader = new FileReader();
         reader.onload = () => {

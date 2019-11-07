@@ -1,3 +1,16 @@
+mat-card {
+  cursor: pointer;
+}
+
 .selected {
     font-weight: 700;
+}
+
+.verse-tag {
+  float: left;
+}
+
+.verse-text {
+  margin-left: 2.5rem;
+  white-space: pre-wrap;
 }

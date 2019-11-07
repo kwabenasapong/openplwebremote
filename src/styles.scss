@@ -1,39 +1,74 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~@angular/material/theming';
 
+@include mat-core();
+$primary: mat-palette($mat-indigo);
+$accent: mat-palette($mat-light-blue, A200, A100, A400);
+$theme: mat-light-theme($primary, $accent);
+@include angular-material-theme($theme);
 
 * {
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
 }
 
 mat-sidenav-layout {
-	background: rgba(0,0,0,0.03);
+  background: rgba(0,0,0,0.03);
 }
+
 mat-sidenav {
-	width: 200px;
+  width: 12rem;
+}
+
+mat-card {
+  margin-bottom: 1rem;
+}
+
+mat-card.service-item,
+mat-card.slide {
+  cursor: pointer;
 }
 
 .displayButton .active {
-	background: 'teal';
+  background: 'teal';
+}
+
+.page-title {
+  margin-left: 1rem;
 }
 
 .content {
-	margin: 20px;
+  margin: 1rem;
 }
 
-.chordline {                                                                                                 
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.chordline {
     line-height: 1.8;
   }
-  
+
   .chordline1 {
-    line-height: 1.0 
+    line-height: 1.0
   }
-  
+
   .chordline span.chord span {
     position: relative;
   }
-  
+
   .chordline span.chord span strong {
     position: absolute;
     top: -2.1rem;

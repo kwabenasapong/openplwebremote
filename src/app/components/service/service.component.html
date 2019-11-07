@@ -1,9 +1,3 @@
-<h3>Service items:</h3>
-<div>
-  <mat-nav-list>
-    <a mat-list-item *ngFor="let item of items;let counter = index;" (click)="onItemSelected(counter)"  [class.selected]="item.selected">
-      <mat-icon mat-list-icon>{{ getIcon(item) }}</mat-icon>
-      <p mat-line>{{item.title}}<p>
-    </a>
-  </mat-nav-list>
-</div>
+<mat-card *ngFor="let item of items; let counter = index;" (click)="onItemSelected(counter)" [tabindex]="counter" class="service-item">
+  <mat-icon>{{ getIcon(item) }}</mat-icon> {{ item.title }}
+</mat-card>

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-
-
-import { OpenLPService } from '../../openlp.service';
 import { MatSnackBar } from '@angular/material';
+
+import { PageTitleService } from '../../page-title.service';
+import { OpenLPService } from '../../openlp.service';
 
 @Component({
   selector: 'openlp-alert',
@@ -15,7 +15,10 @@ export class AlertComponent {
 
   public alert: string;
 
-  constructor(private openlpService: OpenLPService, private snackBar: MatSnackBar) { }
+  constructor(private pageTitleService: PageTitleService, private openlpService: OpenLPService,
+              private snackBar: MatSnackBar) {
+    pageTitleService.changePageTitle('Alerts');
+  }
 
   onSubmit() {
     this.openlpService.showAlert(this.alert).subscribe(res => this.snackBar.open('Alert submitted', '', {duration: 2000}));

@@ -1,4 +1,10 @@
-<mat-sidenav-container class="all-wrap" fullscreen>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="menu.toggle()"><mat-icon>menu</mat-icon></button>
+    <span class="page-title">{{pageTitle}}</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container>
   <mat-sidenav #menu mode="over">
     <mat-nav-list>
       <a mat-list-item (click)="menu.close()" routerLink="/service">Service</a>
@@ -13,51 +19,43 @@
       <mat-slide-toggle color="primary" [checked]="fastSwitching" (change)="sliderChanged($event)">Fast switching</mat-slide-toggle>
     </mat-nav-list>
   </mat-sidenav>
-<div class="page-wrap">
-<header>
-  <mat-toolbar style="background-color: #64aef3;">
-    <button mat-icon-button (click)="menu.toggle()"><mat-icon>menu</mat-icon></button>
-    <span>OpenLP Remote</span>
-    <span class="filler"></span>
-    <button *ngIf="showLogin" mat-button (click)="login()">Login</button>
-  </mat-toolbar>
-</header>
-<main class="content">
-  <router-outlet></router-outlet>
-</main>
-<footer>
-    <mat-toolbar class="footer">
-      <button mat-icon-button (click)="previousItem()" matTooltip="Previous item">
-        <mat-icon>first_page</mat-icon>
-      </button>
-      <button mat-icon-button (click)="nextItem()" matTooltip="Next item">
-        <mat-icon>last_page</mat-icon>
-      </button>
-      <button mat-icon-button (click)="previousSlide()" matTooltip="Previous slide">
-        <mat-icon>navigate_before</mat-icon>
-      </button>
-      <button mat-icon-button (click)="nextSlide()" matTooltip="Next slide">
-        <mat-icon>navigate_next</mat-icon>
-      </button>
-      <button mat-icon-button (click)="blankDisplay()" class="displayButton" [class.active]="state.blank" [disabled]="state.blank" matTooltip="Show black">
-        <mat-icon>videocam_off</mat-icon>
-      </button>
-      <button mat-icon-button (click)="themeDisplay()" class="displayButton" [class.active]="state.theme" [disabled]="state.theme" matTooltip="Show background">
-        <mat-icon>wallpaper</mat-icon>
-      </button>
-      <button mat-icon-button (click)="desktopDisplay()" class="displayButton" [class.active]="state.display" [disabled]="state.display" matTooltip="Show Desktop">
-        <mat-icon>desktop_windows</mat-icon>
-      </button>
-      <button mat-icon-button (click)="showDisplay()" class="displayButton" [class.active]="state.display" [disabled]="state.live()" matTooltip="Show Presentation">
-        <mat-icon>videocam</mat-icon>
-      </button>
-    </mat-toolbar>
-    <mat-toolbar *ngIf="fastSwitching" class="fast-access">
-        <button mat-icon-button routerLink="/service"><mat-icon>list</mat-icon></button>
-        <button mat-icon-button routerLink="/slides"><mat-icon>collections</mat-icon></button>
-        <button mat-icon-button routerLink="/alerts"><mat-icon>error</mat-icon></button>
-        <button mat-icon-button routerLink="/search"><mat-icon>search</mat-icon></button>
+  <mat-sidenav-content>
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+    <footer>
+      <mat-toolbar class="footer">
+        <button mat-icon-button (click)="previousItem()" matTooltip="Previous item">
+          <mat-icon>first_page</mat-icon>
+        </button>
+        <button mat-icon-button (click)="nextItem()" matTooltip="Next item">
+          <mat-icon>last_page</mat-icon>
+        </button>
+        <button mat-icon-button (click)="previousSlide()" matTooltip="Previous slide">
+          <mat-icon>navigate_before</mat-icon>
+        </button>
+        <button mat-icon-button (click)="nextSlide()" matTooltip="Next slide">
+          <mat-icon>navigate_next</mat-icon>
+        </button>
+        <button mat-icon-button (click)="blankDisplay()" class="displayButton" [class.active]="state.blank" [disabled]="state.blank" matTooltip="Show black">
+          <mat-icon>videocam_off</mat-icon>
+        </button>
+        <button mat-icon-button (click)="themeDisplay()" class="displayButton" [class.active]="state.theme" [disabled]="state.theme" matTooltip="Show background">
+          <mat-icon>wallpaper</mat-icon>
+        </button>
+        <button mat-icon-button (click)="desktopDisplay()" class="displayButton" [class.active]="state.display" [disabled]="state.display" matTooltip="Show Desktop">
+          <mat-icon>desktop_windows</mat-icon>
+        </button>
+        <button mat-icon-button (click)="showDisplay()" class="displayButton" [class.active]="state.display" [disabled]="state.live()" matTooltip="Show Presentation">
+          <mat-icon>videocam</mat-icon>
+        </button>
       </mat-toolbar>
-  </footer>
-</div>
+      <mat-toolbar *ngIf="fastSwitching" class="fast-access">
+          <button mat-icon-button routerLink="/service"><mat-icon>list</mat-icon></button>
+          <button mat-icon-button routerLink="/slides"><mat-icon>collections</mat-icon></button>
+          <button mat-icon-button routerLink="/alerts"><mat-icon>error</mat-icon></button>
+          <button mat-icon-button routerLink="/search"><mat-icon>search</mat-icon></button>
+        </mat-toolbar>
+    </footer>
+  </mat-sidenav-content>
 </mat-sidenav-container>
