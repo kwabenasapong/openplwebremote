@@ -1,5 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserModule, Title } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgModule } from '@angular/core';
 
@@ -18,6 +18,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 import { AppComponent } from './app.component';
+import { PageTitleService } from './page-title.service';
 import { OpenLPService } from './openlp.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app.routing';
@@ -68,7 +69,9 @@ import { LoginComponent } from './components/login/login.component';
     MatSnackBarModule
   ],
   providers: [
-    OpenLPService
+    PageTitleService,
+    OpenLPService,
+    Title
   ],
   entryComponents: [
     LoginComponent

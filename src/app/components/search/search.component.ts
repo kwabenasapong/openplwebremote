@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { OpenLPService } from '../../openlp.service';
+import { PageTitleService } from '../../page-title.service';
 import { PluginDescription } from '../../responses';
 
 @Component({
@@ -8,17 +10,16 @@ import { PluginDescription } from '../../responses';
   styleUrls: ['./search.component.scss'],
   providers: [OpenLPService]
 })
-
-
 export class SearchComponent implements OnInit {
-
   public searchPlugins: PluginDescription[] = [];
   public searchText = null;
   public searchResults = null;
   public selectedPlugin = 'songs';
   public currentPlugin: string;
 
-  constructor(private openlpService: OpenLPService) {}
+  constructor(private pageTitleService: PageTitleService, private openlpService: OpenLPService) {
+    pageTitleService.changePageTitle('Search');
+  }
 
   onSubmit() {
     this.currentPlugin = this.selectedPlugin;

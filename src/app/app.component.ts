@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSlideToggleChange, MatDialog } from '@angular/material';
+
 import { State } from './responses';
 import { OpenLPService } from './openlp.service';
-import { MatSlideToggleChange, MatDialog } from '@angular/material';
+import { PageTitleService } from './page-title.service';
 import { LoginComponent } from './components/login/login.component';
 
 @Component({
@@ -13,8 +15,11 @@ export class AppComponent implements OnInit {
   fastSwitching = false;
   state = new State();
   showLogin = false;
+  pageTitle = 'OpenLP Remote';
 
-  constructor(private openlpService: OpenLPService, private dialog: MatDialog) {
+  constructor(private pageTitleService: PageTitleService, private openlpService: OpenLPService,
+              private dialog: MatDialog) {
+    pageTitleService.pageTitleChanged$.subscribe(pageTitle => this.pageTitle = pageTitle);
     openlpService.stateChanged$.subscribe(item => this.state = item);
   }
 

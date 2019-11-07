@@ -1,9 +1,4 @@
-<h3>Slides:</h3>
-<div>
-  <mat-nav-list>
-    <mat-list-item *ngFor="let slide of slides; let counter = index;" (click)="onSlideSelected(counter)" [class.selected]="slide.selected">
-      <span MatListAvatar>{{ slide.tag }}</span>
-      <span MatLine style="margin-left: 2rem;">{{ slide.text }}</span>
-    </mat-list-item>
-  </mat-nav-list>
-</div>
+<mat-card mat-list-item *ngFor="let slide of slides; let counter = index;" (click)="onSlideSelected(counter)" [class.selected]="slide.selected">
+  <div class="verse-tag">{{ slide.tag }}</div>
+  <div class="verse-text">{{ slide.text }}</div>
+</mat-card>

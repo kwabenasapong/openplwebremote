@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { OpenLPService } from '../../openlp.service';
+import { PageTitleService } from '../../page-title.service';
 import { ServiceItem } from '../../responses';
 
 @Component({
@@ -13,6 +14,7 @@ import { ServiceItem } from '../../responses';
 
 export class ServiceComponent implements OnInit {
   items: ServiceItem[] = [];
+
   ngOnInit() {
     this.getServiceItems();
   }
@@ -26,7 +28,9 @@ export class ServiceComponent implements OnInit {
     this.openlpService.getServiceItems().subscribe(items => this.items = items);
   }
 
-  constructor(private openlpService: OpenLPService, private router: Router) {
+  constructor(private pageTitleService: PageTitleService, private openlpService: OpenLPService,
+              private router: Router) {
+    pageTitleService.changePageTitle('Service');
     openlpService.stateChanged$.subscribe(item => this.getServiceItems());
   }
 

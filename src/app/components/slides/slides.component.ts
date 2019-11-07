@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-
 import { OpenLPService } from '../../openlp.service';
+import { PageTitleService } from '../../page-title.service';
 
 @Component({
   selector: 'openlp-slides',
@@ -12,6 +12,12 @@ import { OpenLPService } from '../../openlp.service';
 
 export class SlidesComponent implements OnInit {
   slides = null;
+
+  constructor(private pageTitleService: PageTitleService, private openlpService: OpenLPService) {
+    pageTitleService.changePageTitle('Slides');
+    openlpService.stateChanged$.subscribe(item => this.getSlides());
+  }
+
   ngOnInit() {
     this.getSlides();
   }
@@ -22,9 +28,5 @@ export class SlidesComponent implements OnInit {
 
   getSlides() {
     this.openlpService.getItemSlides().subscribe(slides => this.slides = slides);
-  }
-
-  constructor(private openlpService: OpenLPService) {
-    openlpService.stateChanged$.subscribe(item => this.getSlides());
   }
 }
