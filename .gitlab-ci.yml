@@ -42,7 +42,3 @@ deploy:
     - scp remote-$CI_COMMIT_TAG.zip openlp@openlp.io:/home/openlp/sites/get.openlp.org/www/remote/$CI_COMMIT_TAG/
   only:
     - tags
-    - master@openlp/web-remote
-  artifacts:
-    paths:
-      - remote-*.zip
