@@ -45,7 +45,7 @@ export class OpenLPService {
     else {
       port = '4316';
     }
-    this.apiURL = `http://${host}:${port}/api/v1`;
+    this.apiURL = `http://${host}:${port}/api/v2`;
 
     this.stateChanged$ = new EventEmitter<State>();
     this.retrieveSystemInformation().subscribe(info => {
@@ -78,7 +78,7 @@ export class OpenLPService {
   }
 
   getServiceItems(): Observable<ServiceItem[]> {
-    return this.http.get<ServiceItem[]>(`${this.apiURL}/service/list`, httpOptions);
+    return this.http.get<ServiceItem[]>(`${this.apiURL}/service/items`, httpOptions);
   }
 
   getSearchablePlugins(): Observable<PluginDescription[]> {
@@ -86,7 +86,7 @@ export class OpenLPService {
   }
 
   setServiceItem(id: number): Observable<any> {
-    return this.http.get(`${this.apiURL}/service/set?id=${id}`);
+    return this.http.post(`${this.apiURL}/service/show`, {'id': id}, httpOptions);
   }
 
   search(plugin, text): Observable<any> {
