@@ -75,5 +75,4 @@ export class AppComponent implements OnInit {
   sliderChanged(event: MatSlideToggleChange) {
     this.fastSwitching = event.checked;
   }
-
 }

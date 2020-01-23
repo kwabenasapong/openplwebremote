@@ -11,7 +11,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { MatButtonModule } from '@angular/material/button';
+import { MatButtonModule, MatButtonToggleModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -32,6 +32,7 @@ import { StageViewComponent } from './components/stage-view/stage-view.component
 import { MainViewComponent } from './components/main-view/main-view.component';
 import { ChordProPipe } from './components/chord-view/chordpro.pipe';
 import { LoginComponent } from './components/login/login.component';
+import { ThemesComponent } from './components/themes/themes.component';
 
 
 @NgModule({
@@ -45,13 +46,15 @@ import { LoginComponent } from './components/login/login.component';
     ServiceComponent,
     AlertComponent,
     SearchComponent,
-    SlidesComponent
+    SlidesComponent,
+    ThemesComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    MatButtonToggleModule,
     MatListModule,
     MatSidenavModule,
     MatIconModule,

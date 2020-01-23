@@ -34,6 +34,11 @@ export interface ServiceItem {
     title: string;
 }
 
+export interface Theme {
+    selected: boolean;
+    name: string;
+}
+
 export interface MainView {
   binary_image: string;
 }
