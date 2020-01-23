@@ -1,0 +1,18 @@
+<p *ngIf="themeLevelSwitching">
+  <b>Theme level:</b>
+  <mat-button-toggle-group [value]="theme_level" (change)="onThemeLevelSelected(themeLevelToggle.value)" #themeLevelToggle="matButtonToggleGroup">
+    <mat-button-toggle value="global">Global</mat-button-toggle>
+    <mat-button-toggle value="service">Service</mat-button-toggle>
+  </mat-button-toggle-group>
+</p>
+<ng-container *ngIf="!unsupportedLevel; else unsupportedLevelWarning">
+  <mat-card mat-list-item *ngFor="let theme of theme_list;" (click)='onThemeSelected(theme.name)' [class.selected]="theme.selected">
+    <div class="theme-title">{{ theme.name }}</div>
+  </mat-card>
+</ng-container>
+<mat-slide-toggle color="primary" [checked]="themeLevelSwitching" (change)="levelSliderChanged($event)">Change Theme Level</mat-slide-toggle>
+<ng-template #unsupportedLevelWarning>
+  <p style="text-align: center;">Song level theme changing not yet supported.<br>
+    To continue, change your theme level.
+  </p>
+</ng-template>

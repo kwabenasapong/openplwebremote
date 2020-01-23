@@ -7,6 +7,7 @@ import {
   State,
   Slide,
   ServiceItem,
+  Theme,
   MainView,
   SystemInformation,
   Credentials,
@@ -81,6 +82,14 @@ export class OpenLPService {
     return this.http.get<ServiceItem[]>(`${this.apiURL}/service/items`, httpOptions);
   }
 
+  getThemeLevel(): Observable<any> {
+    return this.http.get(`${this.apiURL}/controller/get_theme_level`, httpOptions);
+  }
+
+  getThemes(): Observable<Theme[]> {
+    return this.http.get<Theme[]>(`${this.apiURL}/controller/themes`, httpOptions);
+  }
+
   getSearchablePlugins(): Observable<PluginDescription[]> {
     return this.http.get<PluginDescription[]>(`${this.apiURL}/core/plugins`, httpOptions);
   }
@@ -95,6 +104,14 @@ export class OpenLPService {
 
   setSlide(id): Observable<any> {
     return this.http.post(`${this.apiURL}/controller/show`, {'id': id}, httpOptions);
+  }
+
+  setThemeLevel(level): Observable<any> {
+    return this.http.post(`${this.apiURL}/controller/set_theme_level`, {'level': level}, httpOptions);
+  }
+
+  setTheme(theme: string): Observable<any> {
+    return this.http.post(`${this.apiURL}/controller/theme_change`, {'theme': theme}, httpOptions);
   }
 
   nextItem(): Observable<any> {

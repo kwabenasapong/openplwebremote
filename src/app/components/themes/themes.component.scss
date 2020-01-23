@@ -1,0 +1,19 @@
+mat-card {
+    cursor: pointer;
+}
+mat-divider {
+    border-color: #afafaf;
+}
+mat-button-toggle-group {
+    margin-left: 10px;
+}
+  
+.selected {
+    background-color: rgb(235, 235, 235);
+    font-weight: 700;
+}
+
+.theme-title {
+    margin-left: 2.5rem;
+    white-space: pre-wrap;
+}
