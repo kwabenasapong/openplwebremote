@@ -83,7 +83,7 @@ export class OpenLPService {
   }
 
   getThemeLevel(): Observable<any> {
-    return this.http.get(`${this.apiURL}/controller/get_theme_level`, httpOptions);
+    return this.http.get(`${this.apiURL}/controller/theme-level`, httpOptions);
   }
 
   getThemes(): Observable<Theme[]> {
@@ -107,11 +107,11 @@ export class OpenLPService {
   }
 
   setThemeLevel(level): Observable<any> {
-    return this.http.post(`${this.apiURL}/controller/set_theme_level`, {'level': level}, httpOptions);
+    return this.http.post(`${this.apiURL}/controller/theme-level`, {'level': level}, httpOptions);
   }
 
   setTheme(theme: string): Observable<any> {
-    return this.http.post(`${this.apiURL}/controller/theme_change`, {'theme': theme}, httpOptions);
+    return this.http.post(`${this.apiURL}/controller/theme`, {'theme': theme}, httpOptions);
   }
 
   nextItem(): Observable<any> {
