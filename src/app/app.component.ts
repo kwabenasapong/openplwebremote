@@ -5,6 +5,7 @@ import { State } from './responses';
 import { OpenLPService } from './openlp.service';
 import { PageTitleService } from './page-title.service';
 import { LoginComponent } from './components/login/login.component';
+import { version } from '../../package.json';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ export class AppComponent implements OnInit {
   state = new State();
   showLogin = false;
   pageTitle = 'OpenLP Remote';
+  appVersion = version;
 
   constructor(private pageTitleService: PageTitleService, private openlpService: OpenLPService,
               private dialog: MatDialog) {

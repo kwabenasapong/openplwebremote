@@ -2,6 +2,14 @@ mat-divider {
   border-color: rgb(175, 175, 175);
 }
 
+mat-toolbar-row .spacer {
+  flex: 1 1 auto;
+}
+
+.app-version {
+  font-size: 70%;
+}
+
 mat-sidenav {
   background: white;
 }

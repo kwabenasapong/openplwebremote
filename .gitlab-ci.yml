@@ -5,40 +5,50 @@ stages:
   - build
   - deploy
 
-before_script:
-  - yarn install
-
 lint:
   stage: test
   script:
+    - yarn install
     - yarn lint
+  except:
+    - tags
 
 test:
   stage: test
   script:
+    - yarn install
     - yarn test --no-progress --no-watch --browsers=ChromiumHeadlessCI
+  except:
+    - tags
 
 build:
   stage: build
   script:
+    - yarn install
     - yarn build --no-progress --prod --aot
   artifacts:
     paths:
       - dist/
+  only:
+    - tags
 
 deploy:
   stage: deploy
   script:
-    - if [[ "$CI_COMMIT_TAG" == "" ]]; then exit 0; fi
     - cd dist/web-remote
     - zip -r ../../remote-$CI_COMMIT_TAG.zip *
-    - d ../../
-    - cho "$CI_COMMIT_TAG" > version.txt
-    - kdir -p ~/.ssh
-    - cho "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-    - hmod 600 ~/.ssh/id_rsa
-    - val $(ssh-agent -s)
-    - sh-add ~/.ssh/id_rsa
-    - '[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-    - sh openlp@openlp.io "mkdir -p /home/openlp/sites/get.openlp.org/www/remote/$CI_COMMIT_TAG"
-    - cp version.txt remote-$CI_COMMIT_TAG.zip openlp@openlp.io:/home/openlp/sites/get.openlp.org/www/remote/$CI_COMMIT_TAG/
+    - cd ../../
+    - export CHECK_SUM=`sha256sum remote-$CI_COMMIT_TAG.zip | cut -d' ' -f1`
+    - export FILE_SIZE=`stat -c '%s' remote-$CI_COMMIT_TAG.zip`
+    - 'echo -e "{\"latest\": {\"version\": \"$CI_COMMIT_TAG\", \"sha256\": \"$CHECK_SUM\", \"filename\": \"remote-$CI_COMMIT_TAG.zip\", \"size\": $FILE_SIZE}}" > version.json'
+    - mkdir -p ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - eval $(ssh-agent -s)
+    - ssh-add ~/.ssh/id_rsa
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - ssh openlp@openlp.io "mkdir -p /home/openlp/sites/get.openlp.org/www/remote/$CI_COMMIT_TAG"
+    - scp remote-$CI_COMMIT_TAG.zip openlp@openlp.io:/home/openlp/sites/get.openlp.org/www/remote/$CI_COMMIT_TAG/
+    - scp version.json openlp@openlp.io:/home/openlp/sites/get.openlp.org/www/remote/
+  only:
+    - tags
