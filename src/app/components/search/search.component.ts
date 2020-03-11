@@ -23,7 +23,6 @@ export class SearchComponent implements OnInit {
 
   onSubmit() {
     this.currentPlugin = this.selectedPlugin;
-    this.currentPlugin = 'songs';
     this.openlpService.search(this.currentPlugin, this.searchText).subscribe(items => this.searchResults = items);
   }
 
