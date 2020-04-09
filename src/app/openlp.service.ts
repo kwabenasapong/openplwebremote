@@ -36,6 +36,7 @@ const httpOptions = {
 export class OpenLPService {
   private apiURL: string;
   public stateChanged$: EventEmitter<State>;
+  public liveChanged$: EventEmitter<State>;
 
   constructor(private http: HttpClient) {
     const host = window.location.hostname;
@@ -56,6 +57,18 @@ export class OpenLPService {
         reader.onload = () => {
           const state = deserialize(JSON.parse(reader.result as string).results, State);
           this.stateChanged$.emit(state);
+        };
+        reader.readAsText(event.data);
+      };
+    });
+    this.liveChanged$ = new EventEmitter<State>();
+    this.retrieveSystemInformation().subscribe(info => {
+    const ws = new WebSocket(`ws://${host}:${info.websocket_port}/live_changed`);
+      ws.onmessage = (event) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const state = deserialize(JSON.parse(reader.result as string).results, State);
+          this.liveChanged$.emit(state);
         };
         reader.readAsText(event.data);
       };
