@@ -26,6 +26,9 @@
     <main class="content">
       <router-outlet></router-outlet>
     </main>
+    <!-- These two toolbars are for padding the content so the real toolbars do not block content when scrolled down -->
+    <mat-toolbar class="toolbar-padding"></mat-toolbar>
+    <mat-toolbar *ngIf="fastSwitching" class="toolbar-padding"></mat-toolbar>
     <footer>
       <mat-toolbar class="footer">
         <button mat-icon-button (click)="previousItem()" matTooltip="Previous item">
