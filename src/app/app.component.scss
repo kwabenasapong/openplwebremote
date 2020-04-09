@@ -15,13 +15,17 @@ mat-sidenav {
 }
 
 mat-sidenav-container {
-  min-height: 100vh;
+  flex: 1;
 }
 
 mat-slide-toggle {
   margin-top: 0.8rem;
   margin-left: 1rem;
   font-size: 80%;
+}
+
+.toolbar-padding {
+  visibility: hidden;
 }
 
 .fast-access {
