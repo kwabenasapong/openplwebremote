@@ -16,13 +16,14 @@ body {
   font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
 
 mat-sidenav-layout {
-  background: rgba(0,0,0,0.03);
+  background: rgba(0, 0, 0, 0.03);
 }
 
 mat-sidenav {
@@ -58,23 +59,37 @@ footer {
 }
 
 .chordline {
-    line-height: 1.8;
-  }
+  line-height: 1.8;
+}
 
-  .chordline1 {
-    line-height: 1.0
-  }
+.chordline1 {
+  line-height: 1.0
+}
 
-  .chordline span.chord span {
-    position: relative;
-  }
+.chordline span.chord span {
+  position: relative;
+}
 
-  .chordline span.chord span strong {
-    position: absolute;
-    top: -2.1rem;
-    left: 0;
-    font-size: 30pt;
-    font-weight: normal;
-    line-height: normal;
-    color: yellow;
-  }
+.chordline span.chord span strong {
+  position: absolute;
+  top: -2.1rem;
+  left: 0;
+  font-size: 30pt;
+  font-weight: normal;
+  line-height: normal;
+  color: yellow;
+}
+
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  color: black;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
