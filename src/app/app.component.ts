@@ -13,7 +13,7 @@ import { version } from '../../package.json';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  fastSwitching = false;
+  private _fastSwitching = false;
   state = new State();
   showLogin = false;
   pageTitle = 'OpenLP Remote';
@@ -27,6 +27,18 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.openlpService.retrieveSystemInformation().subscribe(res => this.showLogin = res.login_required);
+  }
+
+  get fastSwitching(): boolean {
+    if (localStorage.getItem('OpenLP-fastSwitching')) {
+      this._fastSwitching = JSON.parse(localStorage.getItem('OpenLP-fastSwitching'));
+    }
+    return this._fastSwitching;
+  }
+
+  set fastSwitching(value: boolean) {
+    this._fastSwitching = value;
+    localStorage.setItem('OpenLP-fastSwitching', JSON.stringify(value));
   }
 
   login() {

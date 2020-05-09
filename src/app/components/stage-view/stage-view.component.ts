@@ -50,7 +50,7 @@ export class StageViewComponent implements OnInit {
    * So we start with the first tag and on each tag change we push the new one.
    *
    * If we find the same tag, we check to see if the current slide is a repition.
-   * In case of a repition we also add a new tag.
+   * In case of a repetition we also add a new tag.
    *
    * TODO This approach should work for most cases. It is a primary candidate for a test :-)
    */

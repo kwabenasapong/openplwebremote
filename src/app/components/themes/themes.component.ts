@@ -10,14 +10,10 @@ import { PageTitleService } from '../../page-title.service';
   styleUrls: ['./themes.component.scss'],
   providers: [OpenLPService]
 })
-
 export class ThemesComponent implements OnInit {
-  theme_list = null;
-  theme_level = null;
-
-  themeLevelSwitching = false;
-  unsupportedLevel = false;
-
+  private _theme = null;
+  private _themeList = [];
+  private _themeLevel = null;
 
   constructor(private pageTitleService: PageTitleService, private openlpService: OpenLPService) {
     pageTitleService.changePageTitle('Themes');
@@ -26,39 +22,44 @@ export class ThemesComponent implements OnInit {
   ngOnInit() {
     this.getThemeLevel();
     this.getThemes();
+    this.getTheme();
+  }
+
+  get theme(): string {
+    return this._theme;
+  }
+
+  set theme(themeName: string) {
+    this._theme = themeName;
+    this.openlpService.setTheme(themeName).subscribe();
+  }
+
+  get themeList(): Array<string> {
+    return this._themeList;
+  }
+
+  get themeLevel(): string {
+    return this._themeLevel;
+  }
+
+  set themeLevel(level: string) {
+    this._themeLevel = level;
+    this.openlpService.setThemeLevel(level).subscribe();
+  }
+
+  isThemeLevelSupported(): boolean {
+    return this._themeLevel !== 'song';
   }
 
   getThemeLevel() {
-    this.openlpService.getThemeLevel().subscribe(theme_level => {
-      this.theme_level = theme_level;
-      this.unsupportedLevelCheck(this.theme_level);
-    });
+    this.openlpService.getThemeLevel().subscribe(themeLevel => this._themeLevel = themeLevel);
   }
 
   getThemes() {
-    this.openlpService.getThemes().subscribe(theme_list => this.theme_list = theme_list);
+    this.openlpService.getThemes().subscribe(themeList => this._themeList = themeList);
   }
 
-  onThemeLevelSelected(level: string) {
-    this.openlpService.setThemeLevel(level).subscribe(res => this.getThemes());
-  }
-
-  onThemeSelected(theme: string) {
-    this.openlpService.setTheme(theme).subscribe(res => this.getThemes());
-  }
-
-  levelSliderChanged(event: MatSlideToggleChange) {
-    this.themeLevelSwitching = event.checked;
-  }
-
-  unsupportedLevelCheck(level) {
-    this.getThemeLevel();
-    if (level === 'song') {
-      this.unsupportedLevel = true;
-      this.themeLevelSwitching = true;
-    }
-    else {
-      this.unsupportedLevel = false;
-    }
+  getTheme() {
+    this.openlpService.getTheme().subscribe(theme => this._theme = theme);
   }
 }

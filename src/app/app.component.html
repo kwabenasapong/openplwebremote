@@ -9,11 +9,11 @@
 <mat-sidenav-container>
   <mat-sidenav #menu mode="over">
     <mat-nav-list>
-      <a mat-list-item (click)="menu.close()" routerLink="/service">Service</a>
-      <a mat-list-item (click)="menu.close()" routerLink="/slides">Slides</a>
-      <a mat-list-item (click)="menu.close()" routerLink="/alerts">Alerts</a>
-      <a mat-list-item (click)="menu.close()" routerLink="/search">Search</a>
-      <a mat-list-item (click)="menu.close()" routerLink="/themes">Themes</a>
+      <a mat-list-item (click)="menu.close()" routerLink="/service"><mat-icon>list</mat-icon>  Service</a>
+      <a mat-list-item (click)="menu.close()" routerLink="/slides"><mat-icon>collections</mat-icon>  Slides</a>
+      <a mat-list-item (click)="menu.close()" routerLink="/alerts"><mat-icon>error</mat-icon>  Alerts</a>
+      <a mat-list-item (click)="menu.close()" routerLink="/search"><mat-icon>search</mat-icon>  Search</a>
+      <a mat-list-item (click)="menu.close()" routerLink="/themes"><mat-icon>image_search</mat-icon>  Themes</a>
       <mat-divider></mat-divider>
       <a mat-list-item (click)="menu.close()" routerLink="/main">Main View</a>
       <a mat-list-item (click)="menu.close()" routerLink="/stage">Stage View</a>
@@ -56,13 +56,28 @@
           <mat-icon>videocam</mat-icon>
         </button>
       </mat-toolbar>
-      <mat-toolbar *ngIf="fastSwitching" class="fast-access">
-          <button mat-icon-button routerLink="/service"><mat-icon>list</mat-icon></button>
-          <button mat-icon-button routerLink="/slides"><mat-icon>collections</mat-icon></button>
-          <button mat-icon-button routerLink="/alerts"><mat-icon>error</mat-icon></button>
-          <button mat-icon-button routerLink="/search"><mat-icon>search</mat-icon></button>
-          <button mat-icon-button routerLink="/themes"><mat-icon>image_search</mat-icon></button>
-      </mat-toolbar>
+      <nav mat-tab-nav-bar mat-stretch-tabs class="fast-switcher" *ngIf="fastSwitching">
+        <a mat-tab-link
+          routerLink="/service"
+          routerLinkActive #serviceRoute="routerLinkActive"
+          [active]="serviceRoute.isActive"><mat-icon>list</mat-icon></a>
+        <a mat-tab-link
+          routerLink="/slides"
+          routerLinkActive #slidesRoute="routerLinkActive"
+          [active]="slidesRoute.isActive"><mat-icon>collections</mat-icon></a>
+        <a mat-tab-link
+          routerLink="/alerts"
+          routerLinkActive #alertsRoute="routerLinkActive"
+          [active]="alertsRoute.isActive"><mat-icon>error</mat-icon></a>
+        <a mat-tab-link
+          routerLink="/search"
+          routerLinkActive #searchRoute="routerLinkActive"
+          [active]="searchRoute.isActive"><mat-icon>search</mat-icon></a>
+        <a mat-tab-link
+          routerLink="/themes"
+          routerLinkActive #themesRoute="routerLinkActive"
+          [active]="themesRoute.isActive"><mat-icon>image_search</mat-icon></a>
+      </nav>
     </footer>
   </mat-sidenav-content>
 </mat-sidenav-container>

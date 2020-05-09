@@ -1,18 +1,22 @@
-<p *ngIf="themeLevelSwitching">
-  <b>Theme level:</b>
-  <mat-button-toggle-group [value]="theme_level" (change)="onThemeLevelSelected(themeLevelToggle.value)" #themeLevelToggle="matButtonToggleGroup">
-    <mat-button-toggle value="global">Global</mat-button-toggle>
-    <mat-button-toggle value="service">Service</mat-button-toggle>
-  </mat-button-toggle-group>
-</p>
-<ng-container *ngIf="!unsupportedLevel; else unsupportedLevelWarning">
-  <mat-card mat-list-item *ngFor="let theme of theme_list;" (click)='onThemeSelected(theme.name)' [class.selected]="theme.selected">
-    <div class="theme-title">{{ theme.name }}</div>
-  </mat-card>
-</ng-container>
-<mat-slide-toggle color="primary" [checked]="themeLevelSwitching" (change)="levelSliderChanged($event)">Change Theme Level</mat-slide-toggle>
-<ng-template #unsupportedLevelWarning>
-  <p style="text-align: center;">Song level theme changing not yet supported.<br>
-    To continue, change your theme level.
+<form #themeForm="ngForm">
+  <h4>Theme Options</h4>
+  <p>
+    <mat-form-field>
+      <mat-label>Theme level</mat-label>
+      <mat-select [(value)]="themeLevel">
+        <mat-option value="global">Global</mat-option>
+        <mat-option value="service">Service</mat-option>
+        <mat-option value="song">Song</mat-option>
+      </mat-select>
+    </mat-form-field>
   </p>
-</ng-template>
+  <p>
+    <mat-form-field>
+      <mat-label>Theme</mat-label>
+      <mat-select [(value)]="theme" [disabled]="!isThemeLevelSupported()">
+        <mat-option *ngFor="let theme of themeList" [value]="theme.name">{{ theme.name }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="!isThemeLevelSupported()">Song level theme changing not yet supported. Change your theme level to Global or Service</mat-error>
+    </mat-form-field>
+  </p>
+</form>
