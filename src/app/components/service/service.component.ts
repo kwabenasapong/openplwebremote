@@ -20,7 +20,7 @@ export class ServiceComponent implements OnInit {
   }
 
   onItemSelected(item) {
-    this.openlpService.setServiceItem(item).subscribe(res => {});
+    this.openlpService.setServiceItem(item.id).subscribe();
     this.router.navigate(['slides']);
   }
 

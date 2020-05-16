@@ -21,7 +21,7 @@ export interface Slide {
   html: string;
   tag: string;
   text: string;
-  chords_text: string;
+  chords: string;
   lines: string[];
   first_slide_of_tag: boolean;
 }

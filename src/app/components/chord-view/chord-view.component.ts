@@ -26,7 +26,7 @@ export class ChordViewComponent extends StageViewComponent {
     if (!slide) {
       return '';
     }
-    let chordpro: string = slide.chords_text;
+    let chordpro: string = slide.chords;
     chordpro = chordpro.replace(/<span class="\w*\s*\w*">/g, '');
     chordpro = chordpro.replace(/<span>/g, '');
     chordpro = chordpro.replace(/<\/span>/g, '');

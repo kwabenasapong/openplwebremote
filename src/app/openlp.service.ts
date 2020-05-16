@@ -87,44 +87,20 @@ export class OpenLPService {
     return this.http.get<MainView>(`${this.apiURL}/core/live-image`, httpOptions);
   }
 
-  getItemSlides(): Observable<Slide[]> {
-    return this.http.get<Slide[]>(`${this.apiURL}/controller/live-item`, httpOptions);
-  }
-
-  getServiceItems(): Observable<ServiceItem[]> {
-    return this.http.get<ServiceItem[]>(`${this.apiURL}/service/items`, httpOptions);
-  }
-
-  getThemeLevel(): Observable<any> {
-    return this.http.get(`${this.apiURL}/controller/theme-level`, httpOptions);
-  }
-
-  getThemes(): Observable<Theme[]> {
-    return this.http.get<Theme[]>(`${this.apiURL}/controller/themes`, httpOptions);
-  }
-
   getSearchablePlugins(): Observable<PluginDescription[]> {
     return this.http.get<PluginDescription[]>(`${this.apiURL}/core/plugins`, httpOptions);
-  }
-
-  setServiceItem(id: number): Observable<any> {
-    return this.http.post(`${this.apiURL}/service/show`, {'id': id}, httpOptions);
   }
 
   search(plugin, text): Observable<any> {
     return this.http.get(`${this.apiURL}/plugins/${plugin}/search?text=${text}`, httpOptions);
   }
 
-  setSlide(id): Observable<any> {
-    return this.http.post(`${this.apiURL}/controller/show`, {'id': id}, httpOptions);
+  getServiceItems(): Observable<ServiceItem[]> {
+    return this.http.get<ServiceItem[]>(`${this.apiURL}/service/items`, httpOptions);
   }
 
-  setThemeLevel(level): Observable<any> {
-    return this.http.post(`${this.apiURL}/controller/theme-level`, {'level': level}, httpOptions);
-  }
-
-  setTheme(theme: string): Observable<any> {
-    return this.http.post(`${this.apiURL}/controller/theme`, {'theme': theme}, httpOptions);
+  setServiceItem(id: any): Observable<any> {
+    return this.http.post(`${this.apiURL}/service/show`, {'id': id}, httpOptions);
   }
 
   nextItem(): Observable<any> {
@@ -135,12 +111,40 @@ export class OpenLPService {
     return this.http.post(`${this.apiURL}/service/progress`, {'action': 'previous'}, httpOptions);
   }
 
+  getItemSlides(): Observable<Slide[]> {
+    return this.http.get<Slide[]>(`${this.apiURL}/controller/live-item`, httpOptions);
+  }
+
+  setSlide(id: any): Observable<any> {
+    return this.http.post(`${this.apiURL}/controller/show`, {'id': id}, httpOptions);
+  }
+
   nextSlide(): Observable<any> {
     return this.http.post(`${this.apiURL}/controller/progress`, {'action': 'next'}, httpOptions);
   }
 
   previousSlide(): Observable<any> {
     return this.http.post(`${this.apiURL}/controller/progress`, {'action': 'previous'}, httpOptions);
+  }
+
+  getThemeLevel(): Observable<any> {
+    return this.http.get(`${this.apiURL}/controller/theme-level`, httpOptions);
+  }
+
+  getThemes(): Observable<Theme[]> {
+    return this.http.get<Theme[]>(`${this.apiURL}/controller/themes`, httpOptions);
+  }
+
+  setThemeLevel(level): Observable<any> {
+    return this.http.post(`${this.apiURL}/controller/theme-level`, {'level': level}, httpOptions);
+  }
+
+  getTheme(): Observable<any> {
+    return this.http.get(`${this.apiURL}/controller/theme`, httpOptions);
+  }
+
+  setTheme(theme: string): Observable<any> {
+    return this.http.post(`${this.apiURL}/controller/theme`, {'theme': theme}, httpOptions);
   }
 
   blankDisplay(): Observable<any> {

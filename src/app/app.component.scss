@@ -28,9 +28,12 @@ mat-slide-toggle {
   visibility: hidden;
 }
 
-.fast-access {
-  display: flex;
-  justify-content: space-around;
+.fast-switcher {
+  background-color: whitesmoke;
+}
+
+.fast-switcher a.mat-tab-link > span.text {
+  margin-left: 0.3rem;
 }
 
 .footer {
@@ -40,8 +43,8 @@ mat-slide-toggle {
 }
 
 /*
-* Make the Component injected by Router Outlet full height:
-*/
+ * Make the Component injected by Router Outlet full height:
+ */
 main {
   display: flex;
   flex-direction: column;

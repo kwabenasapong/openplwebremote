@@ -1,21 +1,20 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { NgModule } from '@angular/core';
 
-import { MatCardModule, MatDialogModule, MatSnackBarModule } from '@angular/material';
-import { MatListModule } from '@angular/material/list';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule, MatButtonToggleModule } from '@angular/material';
+import { MatCardModule, MatDialogModule, MatSnackBarModule } from '@angular/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { AppComponent } from './app.component';
 import { PageTitleService } from './page-title.service';
@@ -53,23 +52,24 @@ import { ThemesComponent } from './components/themes/themes.component';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AppRoutingModule,
-    MatButtonToggleModule,
-    MatListModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatGridListModule,
     FormsModule,
-    MatFormFieldModule,
-    MatSelectModule,
+    AppRoutingModule,
     MatButtonModule,
-    MatInputModule,
-    MatTooltipModule,
-    MatSlideToggleModule,
+    MatButtonToggleModule,
     MatCardModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatFormFieldModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule
   ],
   providers: [
     PageTitleService,
