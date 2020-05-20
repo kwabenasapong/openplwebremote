@@ -20,8 +20,10 @@ export class ServiceComponent implements OnInit {
   }
 
   onItemSelected(item) {
-    this.openlpService.setServiceItem(item.id).subscribe();
-    this.router.navigate(['slides']);
+    if (item.is_valid) {
+      this.openlpService.setServiceItem(item.id).subscribe();
+      this.router.navigate(['slides']);
+    }
   }
 
   getServiceItems() {
@@ -35,7 +37,9 @@ export class ServiceComponent implements OnInit {
   }
 
   getIcon(item: ServiceItem): string {
-    if (item.plugin === 'songs') {
+    if (!item.is_valid) {
+      return 'delete';
+    } else if (item.plugin === 'songs') {
       return 'queue_music';
     } else if (item.plugin === 'images') {
       return 'image';

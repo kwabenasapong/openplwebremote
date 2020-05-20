@@ -27,16 +27,17 @@ export interface Slide {
 }
 
 export interface ServiceItem {
-    id: string;
-    notes: string;
-    plugin: string;
-    selected: boolean;
-    title: string;
+  id: string;
+  notes: string;
+  plugin: string;
+  selected: boolean;
+  title: string;
+  is_valid: boolean;
 }
 
 export interface Theme {
-    selected: boolean;
-    name: string;
+  selected: boolean;
+  name: string;
 }
 
 export interface MainView {
