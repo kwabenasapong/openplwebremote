@@ -4,7 +4,7 @@
       <span *ngFor="let tag of tags" [class.active]="tag.active">{{ tag.text }}</span>
     </div>
     <div class="container">
-      <div class="slide currentSlide song" [innerHTML]="chordproFormatted(currentSlides[0])|chordpro:transpose"></div>
+      <div class="slide currentSlide song mat-display-3" [innerHTML]="chordproFormatted(currentSlides[activeSlide])|chordpro:transpose"></div>
       <div class="nextSlides">
         <div class="slide song" [class.first]="slide.first_slide_of_tag" *ngFor="let slide of nextSlides" [innerHTML]="chordproFormatted(slide)|chordpro:transpose"></div>
       </div>
