@@ -32,6 +32,7 @@ export class ChordViewComponent extends StageViewComponent {
     chordpro = chordpro.replace(/<\/span>/g, '');
     chordpro = chordpro.replace(/<strong>/g, '[');
     chordpro = chordpro.replace(/<\/strong>/g, ']');
+    chordpro = chordpro.replace(/<br>/g, '\n');
 
     return chordpro;
   }
