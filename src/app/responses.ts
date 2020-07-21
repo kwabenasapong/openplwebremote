@@ -33,6 +33,7 @@ export interface ServiceItem {
   selected: boolean;
   title: string;
   is_valid: boolean;
+  slides: object[];
 }
 
 export interface Theme {

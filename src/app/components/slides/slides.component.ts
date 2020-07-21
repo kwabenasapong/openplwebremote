@@ -27,6 +27,13 @@ export class SlidesComponent implements OnInit {
   }
 
   getSlides() {
-    this.openlpService.getItemSlides().subscribe(slides => this.slides = slides);
+    this.openlpService.getServiceItem().subscribe(serviceItem => {
+      if (serviceItem instanceof Array) {
+        this.slides = serviceItem;
+      }
+      else {
+        this.slides = serviceItem.slides;
+      }
+    });
   }
 }

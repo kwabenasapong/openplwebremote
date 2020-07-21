@@ -28,7 +28,10 @@ const deserialize = (json, cls) => {
 };
 
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
+  })
 };
 
 
@@ -98,8 +101,12 @@ export class OpenLPService {
     return this.http.post(`${this.apiURL}/service/progress`, {'action': 'previous'}, httpOptions);
   }
 
-  getItemSlides(): Observable<Slide[]> {
+  getServiceItem(): Observable<any> {
     return this.http.get<Slide[]>(`${this.apiURL}/controller/live-item`, httpOptions);
+  }
+
+  getNotes(): Observable<any> {
+    return this.http.get(`${this.apiURL}/controller/notes`, httpOptions);
   }
 
   setSlide(id: any): Observable<any> {

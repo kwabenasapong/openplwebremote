@@ -28,6 +28,7 @@ import { SlidesComponent } from './components/slides/slides.component';
 import { FormsModule } from '@angular/forms';
 import { ChordViewComponent } from './components/chord-view/chord-view.component';
 import { StageViewComponent } from './components/stage-view/stage-view.component';
+import { Nl2BrPipe } from './components/stage-view/nl2br.pipe';
 import { MainViewComponent } from './components/main-view/main-view.component';
 import { ChordProPipe } from './components/chord-view/chordpro.pipe';
 import { LoginComponent } from './components/login/login.component';
@@ -39,6 +40,7 @@ import { ThemesComponent } from './components/themes/themes.component';
     AppComponent,
     ChordViewComponent,
     StageViewComponent,
+    Nl2BrPipe,
     MainViewComponent,
     ChordProPipe,
     LoginComponent,
