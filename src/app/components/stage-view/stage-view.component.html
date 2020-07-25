@@ -15,7 +15,10 @@
     </div>
   </div>
   <div class="sidebar">
-    <div class="time">{{ time|date:'HH:mm' }}</div>
-    <button mat-raised-button class="closeButton" routerLink="/">Close</button>
+    <div class="top">
+      <div class="time">{{ time|date:'HH:mm' }}</div>
+      <div class="notes" [innerHTML]="notes|nl2br"></div>
+    </div>
+    <div class="close"><button mat-raised-button class="closeButton" routerLink="/">Close</button></div>
   </div>
 </div>

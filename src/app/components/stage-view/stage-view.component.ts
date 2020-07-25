@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OpenLPService } from '../../openlp.service';
-import { Slide } from '../../responses';
+import { ServiceItem, Slide } from '../../responses';
 
 interface Tag {
   text: string;
@@ -13,10 +13,13 @@ interface Tag {
   styleUrls: ['./stage-view.component.scss', '../overlay.scss']
 })
 export class StageViewComponent implements OnInit {
+  serviceItem: ServiceItem = null;
+  notes = '';
   currentSlides: Slide[] = [];
   activeSlide = 0;
   tags: Tag[] = [];
   time = new Date();
+
   constructor(private openlpService: OpenLPService) {
     setInterval(() => this.time = new Date(), 1000);
   }
@@ -27,7 +30,15 @@ export class StageViewComponent implements OnInit {
   }
 
   updateCurrentSlides(): void {
-    this.openlpService.getItemSlides().subscribe(slides => this.setNewSlides(slides));
+    this.openlpService.getServiceItem().subscribe(serviceItem => {
+      if (serviceItem instanceof Array) {
+        this.setNewSlides(serviceItem);
+      }
+      else {
+        this.setNewSlides(serviceItem.slides);
+        this.setNotes(serviceItem.notes);
+      }
+    });
   }
 
   get nextSlides(): Slide[] {
@@ -41,6 +52,10 @@ export class StageViewComponent implements OnInit {
     this.currentSlides = slides;
     this.activeSlide = slides.findIndex(s => s.selected);
     this.updateTags();
+  }
+
+  setNotes(notes: string): void {
+    this.notes = notes;
   }
 
   /**
