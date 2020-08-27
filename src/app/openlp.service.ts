@@ -85,6 +85,14 @@ export class OpenLPService {
     return this.http.get(`${this.apiURL}/plugins/${plugin}/search?text=${text}`, httpOptions);
   }
 
+  getSearchOptions(plugin): Observable<any> {
+    return this.http.get(`${this.apiURL}/plugins/${plugin}/search-options`, httpOptions);
+  }
+
+  setSearchOption(plugin, option): Observable<any> {
+    return this.http.post(`${this.apiURL}/plugins/${plugin}/search-options`, {'option': option}, httpOptions);
+  }
+
   getServiceItems(): Observable<ServiceItem[]> {
     return this.http.get<ServiceItem[]>(`${this.apiURL}/service/items`, httpOptions);
   }

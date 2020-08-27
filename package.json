@@ -2,14 +2,18 @@
   "name": "@openlp/web-remote",
   "version": "0.9.4",
   "description": "The web remote for OpenLP, written in Angular",
-  "keywords": ["OpenLP", "Angular", "Remote"],
+  "keywords": [
+    "OpenLP",
+    "Angular",
+    "Remote"
+  ],
   "homepage": "https://openlp.org/",
   "bugs": "https://gitlab.com/openlp/web-remote",
   "license": "GPL-3.0-or-later",
   "author": "OpenLP Developers",
   "repository": {
-    "type" : "git",
-    "url" : "https://gitlab.com/openlp/web-remote.git"
+    "type": "git",
+    "url": "https://gitlab.com/openlp/web-remote.git"
   },
   "scripts": {
     "ng": "ng",
