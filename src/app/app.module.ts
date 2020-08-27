@@ -24,6 +24,7 @@ import { AppRoutingModule } from './app.routing';
 import { ServiceComponent } from './components/service/service.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { SearchComponent } from './components/search/search.component';
+import { SearchOptionsComponent } from './components/search/search-options/search-options.component';
 import { SlidesComponent } from './components/slides/slides.component';
 import { FormsModule } from '@angular/forms';
 import { ChordViewComponent } from './components/chord-view/chord-view.component';
@@ -45,6 +46,7 @@ import { ThemesComponent } from './components/themes/themes.component';
     ServiceComponent,
     AlertComponent,
     SearchComponent,
+    SearchOptionsComponent,
     SlidesComponent,
     ThemesComponent
   ],
