@@ -1,6 +1,7 @@
 <form #themeForm="ngForm">
   <h4>Theme Options</h4>
-  <p>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <!-- Theme level menu -->
     <mat-form-field>
       <mat-label>Theme level</mat-label>
       <mat-select [(value)]="themeLevel">
@@ -9,14 +10,22 @@
         <mat-option value="song">Song</mat-option>
       </mat-select>
     </mat-form-field>
-  </p>
-  <p>
+    <!-- Names toggle -->
+    <mat-slide-toggle color="primary" labelPosition="before" [checked]="displayNames" (change)="toggleNames($event.checked)">Names</mat-slide-toggle>
+    <!-- Columns menu -->
     <mat-form-field>
-      <mat-label>Theme</mat-label>
-      <mat-select [(value)]="theme" [disabled]="!isThemeLevelSupported()">
-        <mat-option *ngFor="let theme of themeList" [value]="theme.name">{{ theme.name }}</mat-option>
-      </mat-select>
-      <mat-error *ngIf="!isThemeLevelSupported()">Song level theme changing not yet supported. Change your theme level to Global or Service</mat-error>
+      <mat-label>Columns</mat-label>
+      <input matInput type="number" min=1 [value]="columns" (change)="setLayout($event.target.value)">
     </mat-form-field>
-  </p>
+  </div>
+  <!-- Themes display -->
+  <div class="content" fxLayout="row wrap" [fxLayoutGap]="_padding" *ngIf="isThemeLevelSupported()">
+    <div [fxFlex]="_colWidth" *ngFor="let theme of themeList;">
+      <mat-card (click)='setTheme(theme.name)' [class.selected]="theme.selected">
+        <img [src]="theme.thumbnail"/>
+        <div class="theme-title" *ngIf="displayNames">{{ theme.name }}</div>
+      </mat-card>
+    </div>
+  </div>
+  <mat-error *ngIf="!isThemeLevelSupported()">Song level theme changing not yet supported. Change your theme level to Global or Service</mat-error>
 </form>
