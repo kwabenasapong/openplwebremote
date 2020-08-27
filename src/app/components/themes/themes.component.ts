@@ -14,24 +14,21 @@ export class ThemesComponent implements OnInit {
   private _theme = null;
   private _themeList = [];
   private _themeLevel = null;
+  // Layout variables
+  private _displayNames = true;
+  private _columns = '6'; // Stored as string for mat-select to work properly
+  private _colWidth;
+  private _padding;
+  private _paddingRatio = .5; // How much of a column the sum of all the paddings equals to
 
   constructor(private pageTitleService: PageTitleService, private openlpService: OpenLPService) {
     pageTitleService.changePageTitle('Themes');
   }
 
   ngOnInit() {
+    this.setLayout(this._columns);
     this.getThemeLevel();
     this.getThemes();
-    this.getTheme();
-  }
-
-  get theme(): string {
-    return this._theme;
-  }
-
-  set theme(themeName: string) {
-    this._theme = themeName;
-    this.openlpService.setTheme(themeName).subscribe();
   }
 
   get themeList(): Array<string> {
@@ -44,7 +41,15 @@ export class ThemesComponent implements OnInit {
 
   set themeLevel(level: string) {
     this._themeLevel = level;
-    this.openlpService.setThemeLevel(level).subscribe();
+    this.openlpService.setThemeLevel(level).subscribe(() => this.getTheme());
+  }
+
+  get displayNames() {
+    return this._displayNames;
+  }
+
+  get columns(): string {
+    return this._columns;
   }
 
   isThemeLevelSupported(): boolean {
@@ -60,6 +65,36 @@ export class ThemesComponent implements OnInit {
   }
 
   getTheme() {
-    this.openlpService.getTheme().subscribe(theme => this._theme = theme);
+    this.openlpService.getTheme().subscribe(theme => {
+      this._theme = theme;
+      // Modify the theme list with the current theme. We do this instead of getting all the themes again
+      // We do this here to ensure that the program is the only source of truth for the current theme
+      for (const i of this._themeList) {
+        if ((i.name === theme) && (i.selected === false)) { i.selected = true; }
+        else if ((i.name !== theme) && (i.selected === true)) { i.selected = false; }
+      }
+    });
+  }
+
+  setTheme(themeName: string) {
+    this.openlpService.setTheme(themeName).subscribe(() => this.getTheme());
+  }
+
+  setLayout(columns: string) {
+    if (parseInt(columns, 10) <= 0) { columns = '1'; }
+    this._columns = columns;
+    const intColumns = parseInt(columns, 10); // We convert to int to be able to do the math operations
+    if (intColumns === 1) {
+      this._colWidth = 100;
+      this._padding = 0;
+    }
+    else {
+      this._colWidth = 100 / (intColumns + this._paddingRatio);
+      this._padding = `${(this._paddingRatio * this._colWidth) / intColumns}%`;
+    }
+  }
+
+  toggleNames(value: boolean) {
+    this._displayNames = value;
   }
 }
