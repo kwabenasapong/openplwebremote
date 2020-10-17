@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 
 import { OpenLPService } from '../../openlp.service';
 import { PageTitleService } from '../../page-title.service';
@@ -11,16 +11,17 @@ import { SearchOptionsComponent } from './search-options/search-options.componen
   styleUrls: ['./search.component.scss'],
   providers: [OpenLPService]
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, AfterViewInit {
   public searchPlugins: PluginDescription[] = [];
   public searchText = null;
   public searchResults = null;
-  public selectedPlugin = 'songs';
+  public selectedPlugin: string;
   public currentPlugin: string;
   public displaySearchOptions: Boolean = false;
   @ViewChild(SearchOptionsComponent, {static: false}) searchOptions: SearchOptionsComponent;
 
-  constructor(private pageTitleService: PageTitleService, private openlpService: OpenLPService) {
+  constructor(private pageTitleService: PageTitleService, private openlpService: OpenLPService,
+              private cdr: ChangeDetectorRef) {
     pageTitleService.changePageTitle('Search');
   }
 
@@ -40,6 +41,7 @@ export class SearchComponent implements OnInit {
         this.displaySearchOptions = false;
       }
     }
+    localStorage.setItem('selectedPlugin', this.selectedPlugin);
   }
 
   sendLive(id) {
@@ -52,5 +54,16 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.openlpService.getSearchablePlugins().subscribe(items => this.searchPlugins = items);
+
+    // Retrieve the last selected plugin. Set to 'songs' if it isn't set.
+    if (localStorage.getItem('selectedPlugin') === null) {
+      localStorage.setItem('selectedPlugin', 'songs');
+    }
+    this.selectedPlugin = localStorage.getItem('selectedPlugin');
+  }
+
+  ngAfterViewInit() {
+    this.onPluginChange();
+    this.cdr.detectChanges();
   }
 }
