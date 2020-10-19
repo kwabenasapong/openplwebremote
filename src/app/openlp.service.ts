@@ -110,7 +110,7 @@ export class OpenLPService {
   }
 
   getServiceItem(): Observable<any> {
-    return this.http.get<Slide[]>(`${this.apiURL}/controller/live-item`, httpOptions);
+    return this.http.get<Slide[]>(`${this.apiURL}/controller/live-items`, httpOptions);
   }
 
   getNotes(): Observable<any> {
