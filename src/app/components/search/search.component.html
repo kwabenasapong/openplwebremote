@@ -1,7 +1,7 @@
 <h3>Search</h3>
 <form #searchForm="ngForm">
   <mat-form-field>
-    <mat-select [(ngModel)]="selectedPlugin" (selectionChange)="onPluginChange($event)" name="selectedPlugin" placeholder="Search for:">
+    <mat-select [(ngModel)]="selectedPlugin" (selectionChange)="onPluginChange()" name="selectedPlugin" placeholder="Search for:">
       <mat-option *ngFor="let plugin of searchPlugins" name="searchPlugins" [value]="plugin.key">
         {{plugin.name}}
       </mat-option>
