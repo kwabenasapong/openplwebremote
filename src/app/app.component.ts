@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatSlideToggleChange, MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 import { State } from './responses';
 import { OpenLPService } from './openlp.service';
