@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Credentials } from '../../responses';
-import { MatDialogRef, MatSnackBar } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { OpenLPService } from '../../openlp.service';
 
 @Component({
