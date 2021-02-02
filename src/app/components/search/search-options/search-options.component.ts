@@ -28,14 +28,19 @@ export class SearchOptionsComponent {
   getSearchOptions() {
     this.openlpService.getSearchOptions(this.selectedPlugin).subscribe(res => {
       if (this.selectedPlugin === 'bibles') {
-        this.searchOptions = res['bibles'];
-        this.selectedSearchOption = res['primary'];
+        for (const option of res) {
+          if (option.name === 'primary bible') {
+            this.searchOptions = option['list'];
+            this.selectedSearchOption = option['selected'];
+            break;
+          }
+        }
       }
     });
   }
 
-  setSearchOption(option) {
-    this.openlpService.setSearchOption(this.selectedPlugin, option.value).subscribe(res => {});
-    this.selectedSearchOption = option.value;
+  setSearchOption(target) {
+    this.openlpService.setSearchOption(this.selectedPlugin, 'primary bible', target.value).subscribe(res => {});
+    this.selectedSearchOption = target.value;
   }
 }
