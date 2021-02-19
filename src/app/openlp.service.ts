@@ -39,7 +39,7 @@ const httpOptions = {
 export class OpenLPService {
   private apiURL: string;
   public stateChanged$: EventEmitter<State>;
-  private isTwelveHourTime: boolean = true;
+  private isTwelveHourTime = true;
 
   constructor(private http: HttpClient) {
     const host = window.location.hostname;
