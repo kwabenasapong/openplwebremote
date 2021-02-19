@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="sidebar">
-    <div class="time">{{ time|date:'HH:mm' }}</div>
+    <div class="time">{{ (openlpService.getIsTwelveHourTime()) ? (time|date:'h:mm a') : (time|date:'HH:mm') }}</div>
     <div class="transpose">
       <button mat-icon-button (click)="transposeUp()">
         <mat-icon>keyboard_arrow_up</mat-icon>
