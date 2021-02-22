@@ -39,6 +39,7 @@ const httpOptions = {
 export class OpenLPService {
   private apiURL: string;
   public stateChanged$: EventEmitter<State>;
+  private isTwelveHourTime = true;
 
   constructor(private http: HttpClient) {
     const host = window.location.hostname;
@@ -53,11 +54,12 @@ export class OpenLPService {
 
     this.stateChanged$ = new EventEmitter<State>();
     this.retrieveSystemInformation().subscribe(info => {
-    const ws = new WebSocket(`ws://${host}:${info.websocket_port}`);
+      const ws = new WebSocket(`ws://${host}:${info.websocket_port}`);
       ws.onmessage = (event) => {
         const reader = new FileReader();
         reader.onload = () => {
           const state = deserialize(JSON.parse(reader.result as string).results, State);
+          this.isTwelveHourTime = state.twelve;
           this.stateChanged$.emit(state);
         };
         reader.readAsText(event.data);
@@ -67,6 +69,10 @@ export class OpenLPService {
 
   setAuthToken(token: string): void {
     httpOptions.headers = httpOptions.headers.set('Authorization', token);
+  }
+
+  getIsTwelveHourTime(): boolean {
+    return this.isTwelveHourTime;
   }
 
   retrieveSystemInformation(): Observable<SystemInformation> {
