@@ -20,7 +20,7 @@ export class StageViewComponent implements OnInit {
   tags: Tag[] = [];
   time = new Date();
 
-  constructor(private openlpService: OpenLPService) {
+  constructor(public openlpService: OpenLPService) {
     setInterval(() => this.time = new Date(), 1000);
   }
 
