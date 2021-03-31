@@ -1,4 +1,4 @@
-<mat-card mat-list-item *ngFor="let slide of slides; let counter = index;" (click)="onSlideSelected(counter)" [class.selected]="slide.selected">
+<mat-card class="no-select" mat-list-item *ngFor="let slide of slides; let counter = index;" (click)="onSlideSelected(counter)" [class.selected]="slide.selected">
   <div class="verse-tag">{{ slide.tag }}</div>
   <div class="verse-text">{{ slide.text }}</div>
 </mat-card>
