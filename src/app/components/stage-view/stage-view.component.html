@@ -5,11 +5,23 @@
     </div>
     <div class="container">
       <div class="slide currentSlide mat-display-3">
-        {{ currentSlides[activeSlide]?.text }}
+        <div *ngIf="currentSlides[activeSlide]?.img; else elseActiveSlideText">
+          <img src="{{currentSlides[activeSlide]?.img}}" class="active-slide-img" />
+          <div class="active-slide-img-text">{{ currentSlides[activeSlide]?.text }}</div>
+        </div>
+        <ng-template #elseActiveSlideText>
+          {{ currentSlides[activeSlide]?.text }}
+        </ng-template>
       </div>
       <div class="nextSlides">
         <div class="slide mat-display-1" [class.first]="slide.first_slide_of_tag" *ngFor="let slide of nextSlides">
-          {{ slide.text }}
+          <div *ngIf="slide.img; else elseNextSlidesText">
+            <img src="{{slide.img}}" class="next-slides-img" />
+            <div class="next-slides-text">{{ slide.text }}</div>
+          </div>
+          <ng-template #elseNextSlidesText>
+            {{ slide.text }}
+          </ng-template>
         </div>
       </div>
     </div>

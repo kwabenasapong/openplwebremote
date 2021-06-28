@@ -24,6 +24,7 @@ export interface Slide {
   chords: string;
   lines: string[];
   first_slide_of_tag: boolean;
+  img: string;
 }
 
 export interface ServiceItem {

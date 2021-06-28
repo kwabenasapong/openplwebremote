@@ -15,3 +15,19 @@ mat-card {
   margin-left: 2.5rem;
   white-space: pre-wrap;
 }
+/* Styles for displaying thumbnails */
+.verse-img-container {
+  /* CSS for formatting DIV containing the image */
+  margin-left: 2.5rem;
+  display: inline-block;
+}
+.verse-img-container img {
+  /* Roughly basing these values off of the current thumbnail size */
+  /* Images sent from OpenLP should be larger and should be sized based on viewer screen size */
+  max-height: 75%;
+  min-height: 88px;
+}
+.img-verse-text {
+  font-size: 1.1rem;
+  white-space: pre-wrap;
+}
