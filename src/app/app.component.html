@@ -13,7 +13,7 @@
       <a mat-list-item (click)="menu.close()" routerLink="/slides"><mat-icon>collections</mat-icon>  Slides</a>
       <a mat-list-item (click)="menu.close()" routerLink="/alerts"><mat-icon>error</mat-icon>  Alerts</a>
       <a mat-list-item (click)="menu.close()" routerLink="/search"><mat-icon>search</mat-icon>  Search</a>
-      <a mat-list-item (click)="menu.close()" routerLink="/themes"><mat-icon>image_search</mat-icon>  Themes</a>
+      <a mat-list-item (click)="menu.close()" routerLink="/themes"><mat-icon>image</mat-icon>  Themes</a>
       <mat-divider></mat-divider>
       <a mat-list-item (click)="menu.close()" routerLink="/main">Main View</a>
       <a mat-list-item (click)="menu.close()" routerLink="/stage">Stage View</a>
@@ -76,7 +76,7 @@
         <a mat-tab-link
           routerLink="/themes"
           routerLinkActive #themesRoute="routerLinkActive"
-          [active]="themesRoute.isActive"><mat-icon>image_search</mat-icon></a>
+          [active]="themesRoute.isActive"><mat-icon>image</mat-icon></a>
       </nav>
     </footer>
   </mat-sidenav-content>
