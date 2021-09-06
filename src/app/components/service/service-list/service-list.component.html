@@ -1,0 +1,7 @@
+<openlp-service-item
+	*ngFor="let item of items"
+  [item]="item"
+  [selected]="item.selected"
+  (select)="onItemSelected($event)"
+  [tabindex]="item.id"
+></openlp-service-item>

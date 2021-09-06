@@ -1,39 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { OpenLPService } from '../../openlp.service';
 import { PageTitleService } from '../../page-title.service';
+import { SlideListItem } from './slide-list/slide-list.component';
 
 @Component({
   selector: 'openlp-slides',
   templateUrl: './slides.component.html',
   styleUrls: ['./slides.component.scss'],
-  providers: [OpenLPService]
 })
 
-export class SlidesComponent implements OnInit {
-  slides = null;
-
-  constructor(private pageTitleService: PageTitleService, private openlpService: OpenLPService) {
+export class SlidesComponent {
+  constructor(protected pageTitleService: PageTitleService, protected openlpService: OpenLPService) {
     pageTitleService.changePageTitle('Slides');
-    openlpService.stateChanged$.subscribe(item => this.getSlides());
   }
 
-  ngOnInit() {
-    this.getSlides();
-  }
-
-  onSlideSelected(id) {
-    this.openlpService.setSlide(id).subscribe();
-  }
-
-  getSlides() {
-    this.openlpService.getServiceItem().subscribe(serviceItem => {
-      if (serviceItem instanceof Array) {
-        this.slides = serviceItem;
-      }
-      else {
-        this.slides = serviceItem.slides;
-      }
-    });
+  onSlideSelected(item: SlideListItem) {
+    this.openlpService.setSlide(item.index).subscribe();
   }
 }

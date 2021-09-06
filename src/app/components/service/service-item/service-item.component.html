@@ -1,0 +1,3 @@
+<mat-card (click)="onItemSelected(item)" class="service-item no-select" [class.selected]="selected">
+  <mat-icon>{{ getIcon(item) }}</mat-icon> {{ item.title }}
+</mat-card>
