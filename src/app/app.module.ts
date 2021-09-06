@@ -38,6 +38,10 @@ import { MainViewComponent } from './components/main-view/main-view.component';
 import { ChordProPipe } from './components/chord-view/chordpro.pipe';
 import { LoginComponent } from './components/login/login.component';
 import { ThemesComponent } from './components/themes/themes.component';
+import { SlideListComponent } from './components/slides/slide-list/slide-list.component';
+import { SlideItemComponent } from './components/slides/slide-item/slide-item.component';
+import { ServiceItemComponent } from './components/service/service-item/service-item.component';
+import { ServiceListComponent } from './components/service/service-list/service-list.component';
 
 
 @NgModule({
@@ -50,10 +54,14 @@ import { ThemesComponent } from './components/themes/themes.component';
     ChordProPipe,
     LoginComponent,
     ServiceComponent,
+    ServiceListComponent,
+    ServiceItemComponent,
     AlertComponent,
     SearchComponent,
     SearchOptionsComponent,
     SlidesComponent,
+    SlideListComponent,
+    SlideItemComponent,
     ThemesComponent
   ],
   imports: [

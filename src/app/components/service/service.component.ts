@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { OpenLPService } from '../../openlp.service';
@@ -9,50 +9,18 @@ import { ServiceItem } from '../../responses';
   selector: 'openlp-service',
   templateUrl: './service.component.html',
   styleUrls: ['./service.component.scss'],
-  providers: [OpenLPService]
 })
 
-export class ServiceComponent implements OnInit {
-  items: ServiceItem[] = [];
-
-  ngOnInit() {
-    this.getServiceItems();
-  }
-
-  onItemSelected(item) {
+export class ServiceComponent {
+  onItemSelected(item: ServiceItem) {
     if (item.is_valid) {
       this.openlpService.setServiceItem(item.id).subscribe();
       this.router.navigate(['slides']);
     }
   }
 
-  getServiceItems() {
-    this.openlpService.getServiceItems().subscribe(items => this.items = items);
-  }
-
-  constructor(private pageTitleService: PageTitleService, private openlpService: OpenLPService,
-              private router: Router) {
+  constructor(protected pageTitleService: PageTitleService, protected openlpService: OpenLPService,
+              protected router: Router) {
     pageTitleService.changePageTitle('Service');
-    openlpService.stateChanged$.subscribe(item => this.getServiceItems());
   }
-
-  getIcon(item: ServiceItem): string {
-    if (!item.is_valid) {
-      return 'delete';
-    } else if (item.plugin === 'songs') {
-      return 'queue_music';
-    } else if (item.plugin === 'images') {
-      return 'image';
-    } else if (item.plugin === 'bibles') {
-      return 'book';
-    } else if (item.plugin === 'media') {
-      return 'movie';
-    } else if (item.plugin === 'custom') {
-      return 'description';
-    } else if (item.plugin === 'presentations') {
-      return 'slideshow';
-    }
-    return 'crop_square';
-  }
-
 }
