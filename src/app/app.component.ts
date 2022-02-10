@@ -4,9 +4,10 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 import { State } from './responses';
 import { OpenLPService } from './openlp.service';
+import { WindowRef } from './window-ref.service';
 import { PageTitleService } from './page-title.service';
 import { LoginComponent } from './components/login/login.component';
-import { version } from '../../package.json';
+// import { version } from '../../package.json';
 
 @Component({
   selector: 'app-root',
@@ -18,12 +19,13 @@ export class AppComponent implements OnInit {
   state = new State();
   showLogin = false;
   pageTitle = 'OpenLP Remote';
-  appVersion = version;
+  appVersion = '0.0';
 
   constructor(private pageTitleService: PageTitleService, private openlpService: OpenLPService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog, private windowRef: WindowRef) {
     pageTitleService.pageTitleChanged$.subscribe(pageTitle => this.pageTitle = pageTitle);
     openlpService.stateChanged$.subscribe(item => this.state = item);
+    this.appVersion = windowRef.nativeWindow.appVersion || '0.0';
   }
 
   ngOnInit(): void {
