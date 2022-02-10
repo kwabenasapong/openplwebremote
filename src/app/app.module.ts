@@ -1,7 +1,10 @@
-import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule, Title } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -18,19 +21,17 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { PageTitleService } from './page-title.service';
 import { OpenLPService } from './openlp.service';
-import { HttpClientModule } from '@angular/common/http';
+import { WindowRef } from './window-ref.service';
 import { AppRoutingModule } from './app.routing';
 import { ServiceComponent } from './components/service/service.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { SearchComponent } from './components/search/search.component';
 import { SearchOptionsComponent } from './components/search/search-options/search-options.component';
 import { SlidesComponent } from './components/slides/slides.component';
-import { FormsModule } from '@angular/forms';
 import { ChordViewComponent } from './components/chord-view/chord-view.component';
 import { StageViewComponent } from './components/stage-view/stage-view.component';
 import { Nl2BrPipe } from './components/stage-view/nl2br.pipe';
@@ -91,7 +92,8 @@ import { ServiceListComponent } from './components/service/service-list/service-
   providers: [
     PageTitleService,
     OpenLPService,
-    Title
+    Title,
+    WindowRef
   ],
   entryComponents: [
     LoginComponent
